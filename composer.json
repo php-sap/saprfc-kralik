@@ -1,0 +1,56 @@
+{
+  "name": "php-sap/saprfc-kralik",
+  "description": "PHP/SAP implementation for Gregor Kraliks sapnwrfc module. See https://php-sap.github.io for details.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gregor J.",
+      "email": "gregor-j@users.noreply.github.com"
+    }
+  ],
+  "support": {
+    "docs": "https://php-sap.github.io",
+    "issues": "https://github.com/php-sap/saprfc-kralik/issues",
+    "source": "https://github.com/php-sap/saprfc-kralik"
+  },
+  "keywords": [
+    "phpsap",
+    "php-sap",
+    "sap",
+    "sapnwrfc",
+    "saprfc",
+    "sap-rfc",
+    "rfc",
+    "remote function call",
+    "kralik"
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.0",
+    "ext-sapnwrfc": "*",
+    "phpsap/interfaces": "dev-master",
+    "phpsap/common": "dev-master",
+    "phpunit/phpunit": "^6.5",
+    "phpsap/integration-tests": "dev-php7"
+  },
+  "require-dev": {
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "phpsap\\saprfc\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "tests\\phpsap\\saprfc\\": "tests/"
+    }
+  },
+  "scripts": {
+    "tests": "vendor/bin/phpunit"
+  },
+  "scripts-descriptions": {
+    "tests": "Run all unit tests."
+  }
+}
