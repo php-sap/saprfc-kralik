@@ -1,0 +1,19 @@
+language: php
+sudo: false
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b55ff60ba178ed6d17d568f49e8c6034e54aee0cfaf765c317a8545aeafe1215
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - composer install --no-interaction --ignore-platform-reqs
+script:
+  - vendor/bin/phpunit --coverage-clover clover.xml
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
