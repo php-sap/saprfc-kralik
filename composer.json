@@ -6,14 +6,11 @@
   "authors": [
     {
       "name": "Gregor J.",
-      "email": "gregor-j@users.noreply.github.com"
+      "email": "gregor-j@users.noreply.github.com",
+      "role": "developer"
     }
   ],
-  "support": {
-    "docs": "https://php-sap.github.io",
-    "issues": "https://github.com/php-sap/saprfc-kralik/issues",
-    "source": "https://github.com/php-sap/saprfc-kralik"
-  },
+  "homepage": "https://php-sap.github.io",
   "keywords": [
     "phpsap",
     "php-sap",
@@ -25,17 +22,23 @@
     "remote function call",
     "kralik"
   ],
+  "provide": {
+    "php-sap/interfaces": "~1.0.0"
+  },
+  "conflict": {
+    "kba-team/php-sapnwrfc-kralik": "*"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": "^7.0",
     "ext-sapnwrfc": "*",
-    "phpsap/interfaces": "dev-master",
-    "phpsap/common": "dev-master",
-    "phpunit/phpunit": "^6.5",
-    "phpsap/integration-tests": "dev-php7"
+    "php-sap/interfaces": "^1.0",
+    "php-sap/common": "^1.0"
   },
   "require-dev": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "phpunit/phpunit": "^6.5",
+    "php-sap/integration-tests": "^2.0"
   },
   "autoload": {
     "psr-4": {
