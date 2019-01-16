@@ -72,7 +72,7 @@ class SapRfcFunction extends AbstractFunction
     /**
      * Lookup SAP remote function and return an module class instance of it.
      * @return \SAPNWRFC\RemoteFunction
-     * @throws \phpsap\exceptions\FunctionCallException
+     * @throws \phpsap\exceptions\UnknownFunctionException
      */
     protected function getFunction()
     {
