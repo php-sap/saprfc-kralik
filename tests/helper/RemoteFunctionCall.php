@@ -50,14 +50,4 @@ class RemoteFunctionCall extends AbstractRemoteFunctionCall
     {
         return parent::createConnectionInstance($config);
     }
-
-    /**
-     * Make protected function public for testing.
-     * Get the typecast of the expected return values.
-     * @return \kbATeam\TypeCast\ITypeCast|null
-     */
-    public function getReturnTypecast()
-    {
-        return parent::getReturnTypecast();
-    }
 }

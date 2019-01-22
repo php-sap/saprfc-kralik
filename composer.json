@@ -26,14 +26,16 @@
     "php-sap/interfaces": "~1.0.0"
   },
   "conflict": {
-    "kba-team/php-sapnwrfc-kralik": "*"
+    "kba-team/php-sapnwrfc-kralik": "*",
+    "php-sap/saprfc-harding": "*",
+    "php-sap/saprfc-koucky": "*"
   },
   "minimum-stability": "stable",
   "require": {
     "php": "^7.0",
     "ext-sapnwrfc": "*",
     "php-sap/interfaces": "^1.0",
-    "php-sap/common": "^1.0"
+    "php-sap/common": "^2.0"
   },
   "require-dev": {
     "ext-json": "*",

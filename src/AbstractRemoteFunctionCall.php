@@ -34,13 +34,4 @@ abstract class AbstractRemoteFunctionCall extends \phpsap\classes\AbstractRemote
     {
         return new SapRfcConnection($config);
     }
-
-    /**
-     * Get the typecast of the expected return values.
-     * @return \kbATeam\TypeCast\ITypeCast|null
-     */
-    protected function getReturnTypecast()
-    {
-        return null;
-    }
 }

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e046f0d1b825f990ee36082a5a84a31",
+    "content-hash": "3a48455510acc2015d623102d9502531",
     "packages": [
         {
             "name": "php-sap/common",
-            "version": "v1.1.1",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "bf56c9bdc6f079a1c50781f9b2b9e2b223ee5ec2"
+                "reference": "dac961dc3c7b6d4e6d7e605d79f12b7931287cfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/bf56c9bdc6f079a1c50781f9b2b9e2b223ee5ec2",
-                "reference": "bf56c9bdc6f079a1c50781f9b2b9e2b223ee5ec2",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/dac961dc3c7b6d4e6d7e605d79f12b7931287cfd",
+                "reference": "dac961dc3c7b6d4e6d7e605d79f12b7931287cfd",
                 "shasum": ""
             },
             "require": {
@@ -27,11 +27,10 @@
                 "psr/container": "^1.0"
             },
             "require-dev": {
-                "kba-team/typecast": "^1.0",
                 "phpunit/phpunit": "^4.8"
             },
             "suggest": {
-                "kba-team/typecast": "Automatically typecast the return values of a SAP remote function call when extending AbstractRemoteFunctionCall."
+                "php-sap/datetime": "Cast and/or export SAP week date, time and timestamp formats to/from DateTime."
             },
             "type": "library",
             "autoload": {
@@ -57,7 +56,7 @@
                 "PHPSAP",
                 "php-sap"
             ],
-            "time": "2019-01-16T15:10:40+00:00"
+            "time": "2019-01-22T09:08:12+00:00"
         },
         {
             "name": "php-sap/interfaces",
@@ -407,23 +406,23 @@
         },
         {
             "name": "php-sap/integration-tests",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "66900ae444c031bcdb58d087a98e27aef70d802d"
+                "reference": "ad103bb4166d1c0882619fcea897922f7c2ae592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/66900ae444c031bcdb58d087a98e27aef70d802d",
-                "reference": "66900ae444c031bcdb58d087a98e27aef70d802d",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/ad103bb4166d1c0882619fcea897922f7c2ae592",
+                "reference": "ad103bb4166d1c0882619fcea897922f7c2ae592",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "kba-team/memory-container": "^1.0",
                 "php": "^7.0",
-                "php-sap/common": "^1.0",
+                "php-sap/common": "^2.0",
                 "php-sap/interfaces": "^1.0",
                 "phpunit/phpunit": "^6.5"
             },
@@ -446,7 +445,7 @@
             ],
             "description": "PHP/SAP integration tests.",
             "homepage": "https://php-sap.github.io/",
-            "time": "2019-01-16T15:31:41+00:00"
+            "time": "2019-01-22T09:22:04+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1659,7 +1658,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
