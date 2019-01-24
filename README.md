@@ -1,13 +1,35 @@
 # PHP/SAP implementation for Gregor Kraliks sapnwrfc module
 
-**ATTENTION: THIS IS WORK IN PROGRESS AND NOT TO BE USED UNTIL THIS MESSAGE DISAPPEARS!**
-
 [![License: MIT][license-mit]](LICENSE)
 [![Build Status][travis-badge]][travis-ci]
 [![Maintainability][maintainability-badge]][maintainability]
 [![Test Coverage][coverage-badge]][coverage]
 
 This repository implements the [PHP/SAP][phpsap] interface for [Gregor Kraliks `sapnwrfc` PHP module][kralik].
+
+## Usage
+
+```sh
+composer require php-sap/saprfc-harding:^1.0
+```
+
+```php
+<?php
+use phpsap\saprfc\SapRfcConfigA;
+use phpsap\saprfc\SapRfcConnection;
+
+$result = (new SapRfcConnection(new SapRfcConfigA([
+  'ashost' => 'sap.example.com',
+  'sysnr' => '001',
+  'client' => '002',
+  'user' => 'username',
+  'passwd' => 'password'
+])))
+    ->prepareFunction('MY_COOL_SAP_REMOTE_FUNCTION')
+    ->invoke(['INPUT_PARAM' => 'value']);
+```
+
+For further documentation, please read the documentation on [PHP/SAP][phpsap]!
 
 [phpsap]: https://php-sap.github.io
 [kralik]: https://github.com/gkralik/php7-sapnwrfc "SAP NW RFC SDK extension for PHP7"
