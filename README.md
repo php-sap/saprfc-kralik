@@ -10,7 +10,7 @@ This repository implements the [PHP/SAP][phpsap] interface for [Gregor Kraliks `
 ## Usage
 
 ```sh
-composer require php-sap/saprfc-harding:^1.0
+composer require php-sap/saprfc-kralik:^1.0
 ```
 
 ```php
