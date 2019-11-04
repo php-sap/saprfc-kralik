@@ -1,1 +1,2 @@
-sap.json
+*.json
+!sap.template.json
