@@ -23,7 +23,7 @@
     "kralik"
   ],
   "provide": {
-    "php-sap/interfaces": "~1.0.0"
+    "php-sap/interfaces": "v2.x-dev"
   },
   "conflict": {
     "kba-team/php-sapnwrfc-kralik": "*",
@@ -34,13 +34,13 @@
   "require": {
     "php": "^7.0",
     "ext-sapnwrfc": "*",
-    "php-sap/interfaces": "^1.0",
-    "php-sap/common": "^2.0"
+    "php-sap/interfaces": "v2.x-dev",
+    "php-sap/common": "v3.x-dev"
   },
   "require-dev": {
     "ext-json": "*",
     "phpunit/phpunit": "^6.5",
-    "php-sap/integration-tests": "^2.0"
+    "php-sap/integration-tests": "dev-master"
   },
   "autoload": {
     "psr-4": {
