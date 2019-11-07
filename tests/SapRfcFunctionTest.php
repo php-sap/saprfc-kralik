@@ -172,14 +172,14 @@ class SapRfcFunctionTest extends AbstractFunctionTestCase
                     'RFCTIME' => '102030',
                     'RFCDATE' => '20191030',
                     'RFCDATA1' => 'qKWjmNfad32rfS9Z',
-                    'RFCDATA2' => 'xi82ph2zJ8BCVtlR',
+                    'RFCDATA2' => 'xi82ph2zJ8BCVtlR'
                 ],
                 'DESTINATIONS' => [],
                 'LOG' => [
                     [
                         'RFCDEST' => 'AOP3',
-                        'RFCWHOAMI' => 'kmdci000',
-                        'RFCLOG' => 'RFC-Destination AOP3 existiert nicht.',
+                        'RFCWHOAMI' => 'pzjti000',
+                        'RFCLOG' => 'FAP-RytEHBsRYKX AOP3 eumqvMJD ZLqovj.' //just some random characters around AOP3
                     ]
                 ]
             ];
