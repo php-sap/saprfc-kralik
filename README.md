@@ -10,7 +10,7 @@ This repository implements the [PHP/SAP][phpsap] interface for [Gregor Kraliks `
 ## Usage
 
 ```sh
-composer require php-sap/saprfc-kralik:^1.0
+composer require php-sap/saprfc-kralik:^2.0
 ```
 
 ```php
@@ -26,7 +26,8 @@ $result = (new SapRfcConnection(new SapRfcConfigA([
   'passwd' => 'password'
 ])))
     ->prepareFunction('MY_COOL_SAP_REMOTE_FUNCTION')
-    ->invoke(['INPUT_PARAM' => 'value']);
+    ->setParam('INPUT_PARAM', 'some input value')
+    ->invoke();
 ```
 
 For further documentation, please read the documentation on [PHP/SAP][phpsap]!
