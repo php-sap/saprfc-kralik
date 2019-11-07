@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "04ef97848b7b7ab17c3e076d63604ece94dab0a9"
+                "reference": "7f331e9b2cb02591ac27ed17353109b18b9adcb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/04ef97848b7b7ab17c3e076d63604ece94dab0a9",
-                "reference": "04ef97848b7b7ab17c3e076d63604ece94dab0a9",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/7f331e9b2cb02591ac27ed17353109b18b9adcb9",
+                "reference": "7f331e9b2cb02591ac27ed17353109b18b9adcb9",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "PHPSAP",
                 "php-sap"
             ],
-            "time": "2019-11-07T13:50:01+00:00"
+            "time": "2019-11-07T16:06:35+00:00"
         },
         {
             "name": "php-sap/datetime",
