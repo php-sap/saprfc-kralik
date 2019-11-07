@@ -144,8 +144,8 @@ class SapRfcFunctionTest extends AbstractFunctionTestCase
             return true;
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', function ($name) use ($self) {
-            if ($name !== 'Z_MC_GET_DATE_TIME') {
-                throw new \SAPNWRFC\FunctionCallException('expected Z_MC_GET_DATE_TIME as mock function name!');
+            if ($name !== 'RFC_WALK_THRU_TEST') {
+                throw new \SAPNWRFC\FunctionCallException('expected RFC_WALK_THRU_TEST as mock function name!');
             }
             $self->function = $name;
         });
@@ -156,28 +156,32 @@ class SapRfcFunctionTest extends AbstractFunctionTestCase
             return new \SAPNWRFC\RemoteFunction($name);
         });
         static::mock('\SAPNWRFC\RemoteFunction::invoke', function ($params, $options) use ($self) {
-            if ($self->function !== 'Z_MC_GET_DATE_TIME') {
+            if ($self->function !== 'RFC_WALK_THRU_TEST') {
                 throw new \SAPNWRFC\FunctionCallException('function not correctly initialized!');
             }
-            if ($params !== ['IV_DATE' => '20181119'] || $options !== ['rtrim' => true]) {
-                throw new \SAPNWRFC\FunctionCallException('unexpected parameters array!');
-            }
             return [
-                'EV_FRIDAY'         => '20181123',
-                'EV_FRIDAY_LAST'    => '20181116',
-                'EV_FRIDAY_NEXT'    => '20181130',
-                'EV_FRITXT'         => 'Freitag',
-                'EV_MONDAY'         => '20181119',
-                'EV_MONDAY_LAST'    => '20181112',
-                'EV_MONDAY_NEXT'    => '20181126',
-                'EV_MONTH'          => '11',
-                'EV_MONTH_LAST_DAY' => '20181130',
-                'EV_MONTXT'         => 'Montag',
-                'EV_TIMESTAMP'      => '20181119000000',
-                'EV_WEEK'           => '201847',
-                'EV_WEEK_LAST'      => '201846',
-                'EV_WEEK_NEXT'      => '201848',
-                'EV_YEAR'           => '2018'
+                'TEST_OUT' => [
+                    'RFCFLOAT' => 70.109999999999999,
+                    'RFCCHAR1' => 'A',
+                    'RFCINT2' => 5920,
+                    'RFCINT1' => 163,
+                    'RFCCHAR4' => 'QqMh',
+                    'RFCINT4' => 416639,
+                    'RFCHEX3' => '53' . "\0",
+                    'RFCCHAR2' => 'XC',
+                    'RFCTIME' => '102030',
+                    'RFCDATE' => '20191030',
+                    'RFCDATA1' => 'qKWjmNfad32rfS9Z',
+                    'RFCDATA2' => 'xi82ph2zJ8BCVtlR',
+                ],
+                'DESTINATIONS' => [],
+                'LOG' => [
+                    [
+                        'RFCDEST' => 'AOP3',
+                        'RFCWHOAMI' => 'kmdci000',
+                        'RFCLOG' => 'RFC-Destination AOP3 existiert nicht.',
+                    ]
+                ]
             ];
         });
     }
@@ -209,8 +213,8 @@ class SapRfcFunctionTest extends AbstractFunctionTestCase
             return true;
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', function ($name) use ($self) {
-            if ($name !== 'Z_MC_GET_DATE_TIME') {
-                throw new \SAPNWRFC\FunctionCallException('expected Z_MC_GET_DATE_TIME as mock function name!');
+            if ($name !== 'RFC_READ_TABLE') {
+                throw new \SAPNWRFC\FunctionCallException('expected RFC_READ_TABLE as mock function name!');
             }
             $self->function = $name;
         });

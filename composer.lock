@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "802dcb42a7141a37fede8229eed0a818977f4844"
+                "reference": "04ef97848b7b7ab17c3e076d63604ece94dab0a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/802dcb42a7141a37fede8229eed0a818977f4844",
-                "reference": "802dcb42a7141a37fede8229eed0a818977f4844",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/04ef97848b7b7ab17c3e076d63604ece94dab0a9",
+                "reference": "04ef97848b7b7ab17c3e076d63604ece94dab0a9",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "PHPSAP",
                 "php-sap"
             ],
-            "time": "2019-11-04T11:28:56+00:00"
+            "time": "2019-11-07T13:50:01+00:00"
         },
         {
             "name": "php-sap/datetime",
@@ -459,12 +459,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "2bf631ddfacad914d829a3b84acd677971316341"
+                "reference": "eb4912f8a6c1feab9da795e7c1c63a60373ab2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/2bf631ddfacad914d829a3b84acd677971316341",
-                "reference": "2bf631ddfacad914d829a3b84acd677971316341",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/eb4912f8a6c1feab9da795e7c1c63a60373ab2d1",
+                "reference": "eb4912f8a6c1feab9da795e7c1c63a60373ab2d1",
                 "shasum": ""
             },
             "require": {
@@ -494,7 +494,7 @@
             ],
             "description": "PHP/SAP integration tests.",
             "homepage": "https://php-sap.github.io/",
-            "time": "2019-11-04T12:15:48+00:00"
+            "time": "2019-11-07T12:17:54+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
