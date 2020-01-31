@@ -1,35 +1,34 @@
 <?php
-/**
- * File tests/SapRfcTestCaseTrait.php
- *
- * Implement methods of phpsap\IntegrationTests\AbstractTestCase
- *
- * @package saprfc-kralik
- * @author  Gregor J.
- * @license MIT
- */
 
-namespace tests\phpsap\saprfc;
+namespace tests\phpsap\saprfc\Traits;
 
-use phpsap\saprfc\SapRfcConfigA;
-use phpsap\saprfc\SapRfcConnection;
+use phpsap\saprfc\SapRfc;
 
 /**
- * Trait tests\phpsap\saprfc\SapRfcTestCaseTrait
+ * Trait TestCaseTrait
  *
- * Implement methods of phpsap\IntegrationTests\AbstractTestCase
+ * Collect methods common to all test cases extending the integration tests.
  *
  * @package tests\phpsap\saprfc
- * @author  Gregor J.
+ * @author Gregor J.
  * @license MIT
  */
-trait SapRfcTestCaseTrait
+trait TestCaseTrait
 {
+    /**
+     * Return the name of the class, used for testing.
+     * @return string
+     */
+    public static function getClassName()
+    {
+        return SapRfc::class;
+    }
+
     /**
      * Get the name of the PHP module.
      * @return string
      */
-    public function getModuleName()
+    public static function getModuleName()
     {
         return 'sapnwrfc';
     }
@@ -38,25 +37,25 @@ trait SapRfcTestCaseTrait
      * Get the path to the PHP/SAP configuration file.
      * @return string
      */
-    public function getSapConfigFile()
+    public static function getSapConfigFile()
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'sap.json';
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'sap.json';
     }
 
     /**
      * Get the path to the filename containing the SAP RFC module mockups.
      * @return string
      */
-    public function getModuleTemplateFile()
+    public static function getModuleTemplateFile()
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR . 'SAPNWRFC.php';
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR . 'SAPNWRFC.php';
     }
 
     /**
      * Get an array of valid SAP RFC module function or class method names.
      * @return array
      */
-    public function getValidModuleFunctions()
+    public static function getValidModuleFunctions()
     {
         return [
             'clearFunctionDescCache',
@@ -79,23 +78,14 @@ trait SapRfcTestCaseTrait
     }
 
     /**
-     * Create a new instance of a PHP/SAP connection class.
-     * @param array|string|null $config The PHP/SAP configuration. Default: null
-     * @return \phpsap\saprfc\SapRfcConnection
+     * Remove sapnwrfc trace file.
      */
-    public function newConnection($config = null)
-    {
-        return new SapRfcConnection(new SapRfcConfigA($config));
-    }
-
-    /**
-     * Clean up trace files after tests.
-     */
-    public function __destruct()
+    public function tearDown()
     {
         $traceFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'dev_rfc.trc';
         if (file_exists($traceFile)) {
             unlink($traceFile);
         }
+        parent::tearDown();
     }
 }
