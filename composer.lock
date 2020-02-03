@@ -4,28 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb1c8d8c6efd6d7314ec3c42075fedcd",
+    "content-hash": "e9be97404c35f9811289ca09b04cc1b6",
     "packages": [
         {
             "name": "php-sap/common",
-            "version": "v3.x-dev",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "8f02d67bc3d7cd65b78f92d1288faac751601e08"
+                "reference": "d665349aff1ebbdd4ca6e72023fcc3cf676e63e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/8f02d67bc3d7cd65b78f92d1288faac751601e08",
-                "reference": "8f02d67bc3d7cd65b78f92d1288faac751601e08",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/d665349aff1ebbdd4ca6e72023fcc3cf676e63e3",
+                "reference": "d665349aff1ebbdd4ca6e72023fcc3cf676e63e3",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=5.5.0",
+                "php": "^5.5|^7.0",
                 "php-sap/datetime": "^1.1",
-                "php-sap/interfaces": "v2.x-dev",
-                "psr/container": "^1.0"
+                "php-sap/interfaces": "^2.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8"
@@ -54,7 +53,7 @@
                 "PHPSAP",
                 "php-sap"
             ],
-            "time": "2019-12-17T12:29:11+00:00"
+            "time": "2020-02-03T13:09:02+00:00"
         },
         {
             "name": "php-sap/datetime",
@@ -108,21 +107,21 @@
         },
         {
             "name": "php-sap/interfaces",
-            "version": "v2.x-dev",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/interfaces.git",
-                "reference": "bc06434bfdd038264f02dacc29b924e027485995"
+                "reference": "11f476ce12f8fc359c148950b218d186b5c29ec2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/interfaces/zipball/bc06434bfdd038264f02dacc29b924e027485995",
-                "reference": "bc06434bfdd038264f02dacc29b924e027485995",
+                "url": "https://api.github.com/repos/php-sap/interfaces/zipball/11f476ce12f8fc359c148950b218d186b5c29ec2",
+                "reference": "11f476ce12f8fc359c148950b218d186b5c29ec2",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=5.5.0"
+                "php": "^5.5|^7.0"
             },
             "conflict": {
                 "kba-team/php-sap": "*"
@@ -151,56 +150,7 @@
                 "interfaces",
                 "php-sap"
             ],
-            "time": "2020-01-13T15:26:07+00:00"
-        },
-        {
-            "name": "psr/container",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "time": "2020-02-03T12:48:15+00:00"
         }
     ],
     "packages-dev": [
@@ -450,25 +400,25 @@
         },
         {
             "name": "php-sap/integration-tests",
-            "version": "dev-master-v4",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "9a44b1d242c84d46ea661856002760e09d0e4a8d"
+                "reference": "7b299001847a861320890f851cca676c2b48a13d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/9a44b1d242c84d46ea661856002760e09d0e4a8d",
-                "reference": "9a44b1d242c84d46ea661856002760e09d0e4a8d",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/7b299001847a861320890f851cca676c2b48a13d",
+                "reference": "7b299001847a861320890f851cca676c2b48a13d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "kba-team/memory-container": "^1.0",
                 "php": "^7.0",
-                "php-sap/common": "v3.x-dev",
+                "php-sap/common": "^3.0",
                 "php-sap/datetime": "^1.1",
-                "php-sap/interfaces": "v2.x-dev",
+                "php-sap/interfaces": "^2.0",
                 "phpunit/phpunit": "^6.5"
             },
             "type": "library",
@@ -490,7 +440,7 @@
             ],
             "description": "PHP/SAP integration tests.",
             "homepage": "https://php-sap.github.io/",
-            "time": "2020-01-31T14:30:55+00:00"
+            "time": "2020-02-03T13:55:45+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1098,6 +1048,55 @@
             ],
             "abandoned": true,
             "time": "2018-08-09T05:50:03+00:00"
+        },
+        {
+            "name": "psr/container",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/container.git",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Container\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common Container Interface (PHP FIG PSR-11)",
+            "homepage": "https://github.com/php-fig/container",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interface",
+                "container-interop",
+                "psr"
+            ],
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1807,11 +1806,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-sap/interfaces": 20,
-        "php-sap/common": 20,
-        "php-sap/integration-tests": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
