@@ -10,24 +10,42 @@ This repository implements the [PHP/SAP][phpsap] interface for [Gregor Kraliks `
 ## Usage
 
 ```sh
-composer require php-sap/saprfc-kralik:^2.0
+composer require php-sap/saprfc-kralik
 ```
 
 ```php
 <?php
-use phpsap\saprfc\SapRfcConfigA;
-use phpsap\saprfc\SapRfcConnection;
-
-$result = (new SapRfcConnection(new SapRfcConfigA([
-  'ashost' => 'sap.example.com',
-  'sysnr' => '001',
-  'client' => '002',
-  'user' => 'username',
-  'passwd' => 'password'
-])))
-    ->prepareFunction('MY_COOL_SAP_REMOTE_FUNCTION')
-    ->setParam('INPUT_PARAM', 'some input value')
-    ->invoke();
+//Include the composer autoloader ...
+require_once 'vendor/autoload.php';
+//... and add the namespaces of the classes used.
+use phpsap\classes\Config\ConfigTypeA;
+use phpsap\DateTime\SapDateTime;
+use phpsap\saprfc\SapRfc;
+/**
+ * Create an instance of the SAP remote function using its
+ * name, input parameters, and connection configuration.
+ *
+ * The imaginary SAP remote function requires a
+ * date as input and will return a date as output.
+ *
+ * In this case the configuration array is defined manually.
+ */
+$result = (new SapRfc(
+  'MY_COOL_SAP_REMOTE_FUNCTION',
+  [
+      'IV_DATE' => (new DateTime('2019-12-31'))
+                   ->format(SapDateTime::SAP_DATE)
+  ],
+  new ConfigTypeA([
+      ConfigTypeA::JSON_ASHOST => 'sap.example.com',
+      ConfigTypeA::JSON_SYSNR  => '999',
+      ConfigTypeA::JSON_CLIENT => '001',
+      ConfigTypeA::JSON_USER   => 'username',
+      ConfigTypeA::JSON_PASSWD => 'password'
+  ])
+))->invoke();
+//The output array contains a DateTime object.
+echo $result['OV_DATE']->format('Y-m-d') . PHP_EOL;
 ```
 
 For further documentation, please read the documentation on [PHP/SAP][phpsap]!
