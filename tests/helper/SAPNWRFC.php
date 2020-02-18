@@ -308,4 +308,16 @@ class RemoteFunction
             ->get('\SAPNWRFC\RemoteFunction::'.__FUNCTION__);
         return $func($parameterName);
     }
+
+    /**
+     * Return the SAP remote function API description as array.
+     *
+     * @return array
+     */
+    public function getFunctionDescription(): array
+    {
+        $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
+        return $func();
+    }
 }

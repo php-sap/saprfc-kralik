@@ -73,7 +73,8 @@ trait TestCaseTrait
             '\SAPNWRFC\RemoteFunction::__construct',
             '\SAPNWRFC\RemoteFunction::invoke',
             '\SAPNWRFC\RemoteFunction::setParameterActive',
-            '\SAPNWRFC\RemoteFunction::isParameterActive'
+            '\SAPNWRFC\RemoteFunction::isParameterActive',
+            '\SAPNWRFC\RemoteFunction::getFunctionDescription'
         ];
     }
 
