@@ -158,7 +158,7 @@ class SapRfc extends AbstractFunction
                     strtoupper($name),
                     $this->mapType($element['type']),
                     $this->mapDirection($element['direction']),
-                    $element['optional']
+                    $element
                 ));
             } catch (SapLogicException $exception) {
                 /**
@@ -184,7 +184,11 @@ class SapRfc extends AbstractFunction
      */
     public function saprfcFunctionInterface(): array
     {
-        $result = get_object_vars($this->getFunction());
+        $function = $this->getFunction();
+        if (method_exists($function, 'getFunctionDescription')) {
+            return $function->getFunctionDescription();
+        }
+        $result = get_object_vars($function);
         unset($result['name']);
         return $result;
     }

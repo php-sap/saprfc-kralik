@@ -2,6 +2,7 @@
 
 namespace phpsap\saprfc\Traits;
 
+use phpsap\classes\Api\Element;
 use phpsap\classes\Api\Struct;
 use phpsap\classes\Api\Table;
 use phpsap\classes\Api\Value;
@@ -25,31 +26,36 @@ trait ApiTrait
      * @param string $type      The type of the parameter or return value.
      * @param string $direction The direction indicating whether it's a parameter or
      *                          return value.
-     * @param bool   $optional  The flag, whether this parameter or return value is
-     *                          required.
+     * @param array  $def       The complete API value defintion from the module.
      * @return Value|Struct|Table
-     * @throws \phpsap\exceptions\SapLogicException
-     * @throws \phpsap\exceptions\InvalidArgumentException
      */
-    private function createApiValue($name, $type, $direction, $optional)
+    private function createApiValue($name, $type, $direction, $def)
     {
+        $optional = $def['optional'];
         if ($direction === IArray::DIRECTION_TABLE) {
-            /**
-             * The members array is empty because there is no information about it
-             * from the sapnwrfc module class.
-             * @todo Write to Gregor Kralik.
-             */
-            return new Table($name, $optional, []);
+            return new Table($name, $optional, $this->createMembers($def));
         }
         if ($type === IArray::TYPE_ARRAY) {
-            /**
-             * The members array is empty because there is no information about it
-             * from the sapnwrfc module class.
-             * @todo Write to Gregor Kralik.
-             */
-            return new Struct($name, $direction, $optional, []);
+            return new Struct($name, $direction, $optional, $this->createMembers($def));
         }
         return new Value($type, $name, $direction, $optional);
+    }
+
+    /**
+     * Create either struct or table members from the def array of the remote function API.
+     * @param array $def The complete API value defintion.
+     * @return \phpsap\classes\Api\Element[] An array of IElement compatible objects.
+     * @throws \phpsap\exceptions\SapLogicException In case a datatype is missing in the mappings array.
+     */
+    private function createMembers($def): array
+    {
+        $result = [];
+        if (array_key_exists('typedef', $def) && is_array($def['typedef'])) {
+            foreach ($def['typedef'] as $name => $member) {
+                $result[] = new Element($this->mapType($member['type']), $name);
+            }
+        }
+        return $result;
     }
 
     /**
