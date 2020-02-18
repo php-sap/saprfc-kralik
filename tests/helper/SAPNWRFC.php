@@ -1,5 +1,10 @@
 <?php
 /**
+ * phpcs:ignoreFile
+ * @codingStandardsIgnoreFile
+ * @noinspection PhpMultipleClassesDeclarationsInOneFile
+ */
+/**
  * THIS FILE HAS BLUNTLY BEEN COPIED FROM
  * https://github.com/gkralik/php7-sapnwrfc
  * WHERE IT HAS BEEN PUBLISHED UNDER THE MIT LICENSE.
@@ -43,6 +48,10 @@ function clearFunctionDescCache(string $functionName, string $repositoryId = nul
     return $func($functionName, $repositoryId);
 }
 
+/**
+ * Class Exception
+ * @package SAPNWRFC
+ */
 class Exception extends \RuntimeException
 {
     /**
@@ -70,19 +79,43 @@ class Exception extends \RuntimeException
     }
 }
 
+/**
+ * Class ConnectionException
+ * @package SAPNWRFC
+ */
 class ConnectionException extends Exception
 {
 }
 
+/**
+ * Class FunctionCallException
+ * @package SAPNWRFC
+ */
 class FunctionCallException extends Exception
 {
 }
 
+/**
+ * Class Connection
+ * @package SAPNWRFC
+ */
 class Connection
 {
+    /**
+     * Disable SAP remote function call tracing.
+     */
     const TRACE_LEVEL_OFF = 0;
+    /**
+     * Brief tracing of SAP remote function calls.
+     */
     const TRACE_LEVEL_BRIEF = 1;
+    /**
+     * Verbose tracing of SAP remote function calls.
+     */
     const TRACE_LEVEL_VERBOSE = 2;
+    /**
+     * Debug-like tracing of SAP remote function calls.
+     */
     const TRACE_LEVEL_FULL = 3;
 
     /**
@@ -98,7 +131,7 @@ class Connection
     public function __construct(array $parameters, array $options = [])
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         $func($parameters, $options);
     }
 
@@ -113,7 +146,7 @@ class Connection
     public function getAttributes(): array
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func();
     }
 
@@ -125,7 +158,7 @@ class Connection
     public function ping(): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func();
     }
 
@@ -142,7 +175,7 @@ class Connection
     public function getFunction(string $functionName): RemoteFunction
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func($functionName);
     }
 
@@ -157,7 +190,7 @@ class Connection
     public function close(): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func();
     }
 
@@ -175,7 +208,7 @@ class Connection
     public static function setIniPath(string $path): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func($path);
     }
 
@@ -192,7 +225,7 @@ class Connection
     public static function reloadIniFile(): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func();
     }
 
@@ -208,7 +241,7 @@ class Connection
     public static function setTraceDir(string $path): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func($path);
     }
 
@@ -224,7 +257,7 @@ class Connection
     public static function setTraceLevel(int $level): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\Connection::'.__FUNCTION__);
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func($level);
     }
 
@@ -249,6 +282,10 @@ class Connection
     }
 }
 
+/**
+ * Class RemoteFunction
+ * @package SAPNWRFC
+ */
 class RemoteFunction
 {
     /**
@@ -258,7 +295,7 @@ class RemoteFunction
     public function __construct($name)
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\RemoteFunction::'.__FUNCTION__);
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
         $func($name);
     }
 
@@ -276,7 +313,7 @@ class RemoteFunction
     public function invoke(array $parameters = [], array $options = []): array
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\RemoteFunction::'.__FUNCTION__);
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
         return $func($parameters, $options);
     }
 
@@ -291,7 +328,7 @@ class RemoteFunction
     public function setParameterActive(string $parameterName, bool $isActive)
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\RemoteFunction::'.__FUNCTION__);
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
         $func($parameterName, $isActive);
     }
 
@@ -305,7 +342,7 @@ class RemoteFunction
     public function isParameterActive(string $parameterName): bool
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
-            ->get('\SAPNWRFC\RemoteFunction::'.__FUNCTION__);
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
         return $func($parameterName);
     }
 
