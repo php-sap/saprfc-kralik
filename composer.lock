@@ -8,22 +8,22 @@
     "packages": [
         {
             "name": "php-sap/common",
-            "version": "v3.0.0",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "d665349aff1ebbdd4ca6e72023fcc3cf676e63e3"
+                "reference": "72ed2f5a09b4f4a5265787c6bf907252e178185a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/d665349aff1ebbdd4ca6e72023fcc3cf676e63e3",
-                "reference": "d665349aff1ebbdd4ca6e72023fcc3cf676e63e3",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/72ed2f5a09b4f4a5265787c6bf907252e178185a",
+                "reference": "72ed2f5a09b4f4a5265787c6bf907252e178185a",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": "^5.5|^7.0",
-                "php-sap/datetime": "^1.1",
+                "php": "^7.0",
+                "php-sap/datetime": "^1.2",
                 "php-sap/interfaces": "^2.0"
             },
             "require-dev": {
@@ -53,24 +53,24 @@
                 "PHPSAP",
                 "php-sap"
             ],
-            "time": "2020-02-03T13:09:02+00:00"
+            "time": "2020-02-28T15:24:09+00:00"
         },
         {
             "name": "php-sap/datetime",
-            "version": "v1.1.0",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/datetime.git",
-                "reference": "caf2c0df6b6909d7d107388a501961aecee1ce43"
+                "reference": "89d4a13d3a229ccbd598998f600d067d6014872a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/datetime/zipball/caf2c0df6b6909d7d107388a501961aecee1ce43",
-                "reference": "caf2c0df6b6909d7d107388a501961aecee1ce43",
+                "url": "https://api.github.com/repos/php-sap/datetime/zipball/89d4a13d3a229ccbd598998f600d067d6014872a",
+                "reference": "89d4a13d3a229ccbd598998f600d067d6014872a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "php": "^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8"
@@ -103,7 +103,7 @@
                 "timestamp",
                 "week"
             ],
-            "time": "2019-01-21T13:28:53+00:00"
+            "time": "2020-02-28T14:59:01+00:00"
         },
         {
             "name": "php-sap/interfaces",
@@ -400,16 +400,16 @@
         },
         {
             "name": "php-sap/integration-tests",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "7b299001847a861320890f851cca676c2b48a13d"
+                "reference": "adb6089922f11dd011a9d7cd4d19075054436871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/7b299001847a861320890f851cca676c2b48a13d",
-                "reference": "7b299001847a861320890f851cca676c2b48a13d",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/adb6089922f11dd011a9d7cd4d19075054436871",
+                "reference": "adb6089922f11dd011a9d7cd4d19075054436871",
                 "shasum": ""
             },
             "require": {
@@ -440,7 +440,7 @@
             ],
             "description": "PHP/SAP integration tests.",
             "homepage": "https://php-sap.github.io/",
-            "time": "2020-02-03T13:55:45+00:00"
+            "time": "2020-03-02T08:01:48+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1659,16 +1659,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
                 "shasum": ""
             },
             "require": {
@@ -1680,7 +1680,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -1713,7 +1713,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -1757,16 +1757,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925"
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/573381c0a64f155a0d9a23f4b0c797194805b925",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
                 "shasum": ""
             },
             "require": {
@@ -1801,7 +1801,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2019-11-24T13:36:37+00:00"
+            "time": "2020-02-14T12:15:55+00:00"
         }
     ],
     "aliases": [],
