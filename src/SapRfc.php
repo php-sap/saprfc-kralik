@@ -217,7 +217,7 @@ class SapRfc extends AbstractFunction
         try {
             $result = $this
                 ->getFunction()
-                ->invoke($params, static::$invokeOptions);
+                ->invoke($params, self::$invokeOptions);
         } catch (ModuleFunctionCallException $exception) {
             throw new FunctionCallException(sprintf(
                 'Function call %s failed: %s',
