@@ -25,18 +25,26 @@ trait ConfigTrait
      */
     protected function getModuleConfig(IConfiguration $config): array
     {
-        $common = $this->getCommonConfig($config);
-        /**
-         * Only type A and B configurations are supported by this module,
-         * its common classes and its interface. Therefore, we do not
-         * expect any other types here.
-         */
+        return array_merge(
+            $this->getCommonConfig($config),
+            $this->getSpecificConfig($config)
+        );
+    }
+
+    /**
+     * Only type A and B configurations are supported by this module,
+     * its common classes and its interface. Therefore, we do not
+     * expect any other types here.
+     * @param \phpsap\interfaces\Config\IConfiguration $config
+     * @return array
+     * @throws \phpsap\interfaces\exceptions\IIncompleteConfigException
+     */
+    private function getSpecificConfig(IConfiguration $config): array
+    {
         if ($config instanceof IConfigTypeA) {
-            $specific = $this->getTypeAConfig($config);
-        } else {
-            $specific = $this->getTypeBConfig($config);
+            return $this->getTypeAConfig($config);
         }
-        return array_merge($common, $specific);
+        return $this->getTypeBConfig($config);
     }
 
     /**
