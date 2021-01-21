@@ -58,8 +58,7 @@ trait ParamTrait
         $result = [];
         foreach ($tables as $table) {
             $key = $table->getName();
-            if (
-                array_key_exists($key, $params)
+            if (array_key_exists($key, $params)
                 && is_array($params[$key])
                 && count($params[$key]) > 0
             ) {
@@ -81,8 +80,7 @@ trait ParamTrait
             $key = $output->getName();
             $value = $output->cast($result[$key]);
             $type = $output->getType();
-            if (
-                $type === IElement::TYPE_STRING
+            if ($type === IElement::TYPE_STRING
                 || $type === IStruct::TYPE_STRUCT
                 || $type === ITable::TYPE_TABLE
             ) {
