@@ -6,6 +6,11 @@ use phpsap\exceptions\FunctionCallException;
 use phpsap\interfaces\Api\IElement;
 use phpsap\interfaces\Api\IStruct;
 use phpsap\interfaces\Api\ITable;
+use function array_key_exists;
+use function count;
+use function is_array;
+use function is_string;
+use function sprintf;
 
 /**
  * Trait ParamTrait

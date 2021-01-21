@@ -17,6 +17,10 @@ use SAPNWRFC\Connection;
 use SAPNWRFC\ConnectionException as ModuleConnectionException;
 use SAPNWRFC\FunctionCallException as ModuleFunctionCallException;
 use SAPNWRFC\RemoteFunction;
+use function array_merge;
+use function get_object_vars;
+use function method_exists;
+use function sprintf;
 
 /**
  * Class SapRfc

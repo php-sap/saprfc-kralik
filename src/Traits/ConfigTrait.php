@@ -7,6 +7,7 @@ use phpsap\interfaces\Config\IConfigTypeA;
 use phpsap\interfaces\Config\IConfigTypeB;
 use phpsap\interfaces\Config\IConfiguration;
 use phpsap\interfaces\exceptions\IIncompleteConfigException;
+use function array_merge;
 
 /**
  * Trait ConfigTrait
