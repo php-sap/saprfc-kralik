@@ -72,6 +72,7 @@ trait ParamTrait
      * @param \phpsap\interfaces\Api\IValue[] $outputs
      * @param array                           $result
      * @return array
+     * @throws \phpsap\interfaces\exceptions\IInvalidArgumentException
      */
     private function castOutputValues(array $outputs, array $result): array
     {

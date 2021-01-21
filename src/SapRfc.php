@@ -180,7 +180,8 @@ class SapRfc extends AbstractFunction
     }
 
     /**
-     * Extract the remote function API from the function object and remove unwanted variables.
+     * Extract the remote function API from the function object and remove
+     * unwanted variables.
      * @return array
      * @throws \phpsap\exceptions\ConnectionFailedException
      * @throws \phpsap\exceptions\IncompleteConfigException
@@ -199,6 +200,7 @@ class SapRfc extends AbstractFunction
 
     /**
      * @inheritDoc
+     * @throws \phpsap\interfaces\exceptions\IInvalidArgumentException
      */
     public function invoke(): array
     {
