@@ -7,8 +7,9 @@ use phpsap\classes\Api\Struct;
 use phpsap\classes\Api\Table;
 use phpsap\classes\Api\Value;
 use phpsap\exceptions\SapLogicException;
-use phpsap\interfaces\Api\IArray;
 use phpsap\interfaces\Api\IElement;
+use phpsap\interfaces\Api\IStruct;
+use phpsap\interfaces\Api\ITable;
 use phpsap\interfaces\Api\IValue;
 
 /**
@@ -32,10 +33,10 @@ trait ApiTrait
     private function createApiValue($name, $type, $direction, $def)
     {
         $optional = $def['optional'];
-        if ($direction === IArray::DIRECTION_TABLE) {
-            return new Table($name, $optional, $this->createMembers($def));
+        if ($type === ITable::TYPE_TABLE) {
+            return new Table($name, $direction, $optional, $this->createMembers($def));
         }
-        if ($type === IArray::TYPE_ARRAY) {
+        if ($type === IStruct::TYPE_STRUCT) {
             return new Struct($name, $direction, $optional, $this->createMembers($def));
         }
         return new Value($type, $name, $direction, $optional);
@@ -79,8 +80,8 @@ trait ApiTrait
             'RFCTYPE_STRING'    => IElement::TYPE_STRING,
             'RFCTYPE_BYTE'      => IElement::TYPE_HEXBIN,
             'RFCTYPE_XSTRING'   => IElement::TYPE_HEXBIN,
-            'RFCTYPE_STRUCTURE' => IArray::TYPE_ARRAY,
-            'RFCTYPE_TABLE'     => IArray::TYPE_ARRAY
+            'RFCTYPE_STRUCTURE' => IStruct::TYPE_STRUCT,
+            'RFCTYPE_TABLE'     => ITable::TYPE_TABLE
         ];
         if (!array_key_exists($type, $mapping)) {
             throw new SapLogicException(sprintf('Unknown SAP Netweaver RFC type \'%s\'!', $type));
@@ -99,7 +100,7 @@ trait ApiTrait
         $mapping = [
             'RFC_EXPORT' => IValue::DIRECTION_OUTPUT,
             'RFC_IMPORT' => IValue::DIRECTION_INPUT,
-            'RFC_TABLES' => IArray::DIRECTION_TABLE
+            'RFC_TABLES' => ITable::DIRECTION_TABLE
         ];
         if (!array_key_exists($direction, $mapping)) {
             throw new SapLogicException(sprintf('Unknown SAP Netweaver RFC direction \'%s\'!', $direction));

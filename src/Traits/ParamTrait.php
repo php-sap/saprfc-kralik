@@ -3,8 +3,9 @@
 namespace phpsap\saprfc\Traits;
 
 use phpsap\exceptions\FunctionCallException;
-use phpsap\interfaces\Api\IArray;
 use phpsap\interfaces\Api\IElement;
+use phpsap\interfaces\Api\IStruct;
+use phpsap\interfaces\Api\ITable;
 
 /**
  * Trait ParamTrait
@@ -43,7 +44,7 @@ trait ParamTrait
     /**
      * Generate a function call parameter array from a list of known tables and the
      * previously set parameters.
-     * @param \phpsap\interfaces\Api\IArray[] $tables
+     * @param \phpsap\interfaces\Api\ITable[] $tables
      * @param array                           $params
      * @return array
      */
@@ -77,7 +78,8 @@ trait ParamTrait
             $type = $output->getType();
             if (
                 $type === IElement::TYPE_STRING
-                || $type === IArray::TYPE_ARRAY
+                || $type === IStruct::TYPE_STRUCT
+                || $type === ITable::TYPE_TABLE
             ) {
                 $value = $this->rtrimStrings($value);
             }
