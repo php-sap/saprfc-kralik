@@ -34,13 +34,13 @@
   "require": {
     "php": "^7.0",
     "ext-sapnwrfc": "*",
-    "php-sap/interfaces": "dev-master",
-    "php-sap/common": "dev-master"
+    "php-sap/interfaces": "^3.0",
+    "php-sap/common": "^4.0"
   },
   "require-dev": {
     "ext-json": "*",
     "phpunit/phpunit": "^6.5",
-    "php-sap/integration-tests": "dev-master"
+    "php-sap/integration-tests": "^5.0"
   },
   "autoload": {
     "psr-4": {
