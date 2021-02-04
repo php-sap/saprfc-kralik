@@ -33,7 +33,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": "^7.0",
-    "ext-sapnwrfc": "*",
+    "ext-sapnwrfc": "^1.4",
     "php-sap/interfaces": "^3.0",
     "php-sap/common": "^4.0"
   },
