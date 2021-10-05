@@ -23,6 +23,7 @@
     "kralik"
   ],
   "conflict": {
+    "kba-team/php-sapnwrfc-harding": "*",
     "kba-team/php-sapnwrfc-kralik": "*",
     "php-sap/saprfc-harding": "*",
     "php-sap/saprfc-koucky": "*"
