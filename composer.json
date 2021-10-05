@@ -22,9 +22,6 @@
     "remote function call",
     "kralik"
   ],
-  "provide": {
-    "php-sap/interfaces": "^2.0"
-  },
   "conflict": {
     "kba-team/php-sapnwrfc-kralik": "*",
     "php-sap/saprfc-harding": "*",
