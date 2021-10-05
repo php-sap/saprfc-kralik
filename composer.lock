@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "057c6511a4167c0a98d129950530c4fb",
+    "content-hash": "036a6689a9451013729f62cba96d1ee5",
     "packages": [
         {
             "name": "php-sap/common",
