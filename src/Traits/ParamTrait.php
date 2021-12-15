@@ -74,32 +74,7 @@ trait ParamTrait
         foreach ($outputs as $output) {
             $key = $output->getName();
             $value = $output->cast($result[$key]);
-            $type = $output->getType();
-            if (
-                $type === IElement::TYPE_STRING
-                || $type === IArray::TYPE_ARRAY
-            ) {
-                $value = $this->rtrimStrings($value);
-            }
             $return[$key] = $value;
-        }
-        return $return;
-    }
-
-    /**
-     * Trim all trailing spaces, newlines and null-bytes from strings.
-     * @param mixed $return
-     * @return mixed
-     */
-    private function rtrimStrings($return)
-    {
-        if (is_string($return)) {
-            return rtrim($return);
-        }
-        if (is_array($return)) {
-            foreach ($return as $key => $value) {
-                $return[$key] = $this->rtrimStrings($value);
-            }
         }
         return $return;
     }
