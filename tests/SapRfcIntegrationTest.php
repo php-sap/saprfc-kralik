@@ -693,7 +693,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
             }
             return [
                 'TEST_OUT' => [
-                    'RFCFLOAT' => 70.109999999999999,
+                    'RFCFLOAT' => 70.11,
                     'RFCCHAR1' => 'A',
                     'RFCINT2' => 4095,
                     'RFCINT1' => 163,
@@ -703,15 +703,15 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                     'RFCCHAR2' => 'XC',
                     'RFCTIME' => '102030',
                     'RFCDATE' => '20191030',
-                    'RFCDATA1' => 'qKWjmNfad32rfS9Z                                  ',
-                    'RFCDATA2' => 'xi82ph2zJ8BCVtlR                                  '
+                    'RFCDATA1' => 'qKWjmNfad32rfS9Z',
+                    'RFCDATA2' => 'xi82ph2zJ8BCVtlR'
                 ],
                 'DESTINATIONS' => [],
                 'LOG' => [
                     [
-                        'RFCDEST' => 'AOP3                            ',
-                        'RFCWHOAMI' => 'pzjti000                        ',
-                        'RFCLOG' => 'FAP-RytEHBsRYKX AOP3 eumqvMJD ZLqovj.                                 '
+                        'RFCDEST' => 'AOP3',
+                        'RFCWHOAMI' => 'pzjti000',
+                        'RFCLOG' => 'FAP-RytEHBsRYKX AOP3 eumqvMJD ZLqovj.'
                     ]
                 ]
             ];
