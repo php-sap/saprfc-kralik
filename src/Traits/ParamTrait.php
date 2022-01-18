@@ -79,8 +79,15 @@ trait ParamTrait
         $return = [];
         foreach ($outputs as $output) {
             $key = $output->getName();
-            $value = $output->cast($result[$key]);
-            $return[$key] = $value;
+            if (array_key_exists($key, $result)) {
+                $return[$key] = $output->cast($result[$key]);
+            } elseif (!$output->isOptional()) {
+                throw new FunctionCallException(sprintf(
+                    'Missing result value \'%s\' for function call \'%s\'!',
+                    $key,
+                    $this->getName()
+                ));
+            }
         }
         return $return;
     }
