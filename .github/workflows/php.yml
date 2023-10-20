@@ -56,7 +56,7 @@ jobs:
           restore-keys: "${{ runner.os }}-php-"
       - # Install dependencies
         name: "Install composer dependencies"
-        run: "composer install --prefer-dist --no-progress"
+        run: "composer install --prefer-dist --no-progress --ignore-platform-req=ext-sapnwrfc"
       - # CodeClimate Reporter Setup
         name: "CodeClimate Reporter Setup"
         run: |
