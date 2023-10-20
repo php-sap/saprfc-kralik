@@ -6,6 +6,8 @@ use phpsap\exceptions\FunctionCallException;
 use phpsap\interfaces\Api\IElement;
 use phpsap\interfaces\Api\IStruct;
 use phpsap\interfaces\Api\ITable;
+use phpsap\interfaces\Api\IValue;
+use phpsap\interfaces\exceptions\IInvalidArgumentException;
 use function array_key_exists;
 use function count;
 use function is_array;
@@ -23,10 +25,10 @@ trait ParamTrait
     /**
      * Generate a function call parameter array from a list of known input values
      * and the previously set parameters.
-     * @param \phpsap\interfaces\Api\IValue[] $inputs API input values.
+     * @param IValue[] $inputs API input values.
      * @param array                           $params Parameters
      * @return array
-     * @throws \phpsap\exceptions\FunctionCallException
+     * @throws FunctionCallException
      */
     private function getInputParams(array $inputs, array $params): array
     {
@@ -49,7 +51,7 @@ trait ParamTrait
     /**
      * Generate a function call parameter array from a list of known tables and the
      * previously set parameters.
-     * @param \phpsap\interfaces\Api\ITable[] $tables
+     * @param ITable[] $tables
      * @param array                           $params
      * @return array
      */
@@ -69,10 +71,10 @@ trait ParamTrait
     }
 
     /**
-     * @param \phpsap\interfaces\Api\IValue[] $outputs
+     * @param IValue[] $outputs
      * @param array                           $result
      * @return array
-     * @throws \phpsap\interfaces\exceptions\IInvalidArgumentException
+     * @throws IInvalidArgumentException
      */
     private function castOutputValues(array $outputs, array $result): array
     {

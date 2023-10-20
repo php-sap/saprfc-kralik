@@ -3,6 +3,10 @@
 namespace tests\phpsap\saprfc;
 
 use phpsap\IntegrationTests\AbstractSapRfcTestCase;
+use SAPNWRFC\ConnectionException;
+use SAPNWRFC\FunctionCallException;
+use SAPNWRFC\RemoteFunction;
+use stdClass;
 use tests\phpsap\saprfc\Traits\TestCaseTrait;
 
 /**
@@ -510,7 +514,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     protected function mockConnectionFailed()
     {
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) {
-            throw new \SAPNWRFC\ConnectionException('mock failed connection');
+            throw new ConnectionException('mock failed connection');
         });
     }
 
@@ -519,7 +523,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
      */
     protected function mockSuccessfulRfcPing()
     {
-        $flags = new \stdClass();
+        $flags = new stdClass();
         $flags->conn = false;
         $flags->func = null;
         $expectedConfig = static::getSampleSapConfig();
@@ -536,7 +540,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new \SAPNWRFC\ConnectionException('mock received invalid config array!');
+                throw new ConnectionException('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -544,38 +548,38 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\ConnectionException('mock connection already closed!');
+                throw new ConnectionException('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
         });
         static::mock('\SAPNWRFC\Connection::getFunction', static function ($name) {
-            return new \SAPNWRFC\RemoteFunction($name);
+            return new RemoteFunction($name);
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== 'RFC_PING') {
-                throw new \SAPNWRFC\FunctionCallException('expected RFC_PING as mock function name!');
+                throw new FunctionCallException('expected RFC_PING as mock function name!');
             }
             $flags->func = $name;
         });
         static::mock('\SAPNWRFC\RemoteFunction::getFunctionDescription', static function () use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             return [];
         });
         static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($flags->func !== 'RFC_PING') {
-                throw new \SAPNWRFC\FunctionCallException('mock function not correctly constructed!');
+                throw new FunctionCallException('mock function not correctly constructed!');
             }
             if (!empty($params)) {
-                throw new \SAPNWRFC\FunctionCallException('mock RFC_PING received parameters! ' . json_encode($params));
+                throw new FunctionCallException('mock RFC_PING received parameters! ' . json_encode($params));
             }
             return [];
         });
@@ -586,7 +590,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
      */
     protected function mockUnknownFunctionException()
     {
-        $flags = new \stdClass();
+        $flags = new stdClass();
         $flags->conn = false;
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
@@ -602,7 +606,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new \SAPNWRFC\ConnectionException('mock received invalid config array!');
+                throw new ConnectionException('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -610,13 +614,13 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\ConnectionException('mock connection already closed!');
+                throw new ConnectionException('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
         });
         static::mock('\SAPNWRFC\Connection::getFunction', static function ($name) {
-            throw new \SAPNWRFC\FunctionCallException(sprintf('function %s not found', $name));
+            throw new FunctionCallException(sprintf('function %s not found', $name));
         });
     }
 
@@ -626,7 +630,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     protected function mockRemoteFunctionCallWithParametersAndResults()
     {
         //Use an object for connection flag and function name.
-        $flags = new \stdClass();
+        $flags = new stdClass();
         $flags->conn = false;
         $flags->func = null;
         $flags->api = static::$rfcWalkThruTestApi;
@@ -644,7 +648,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new \SAPNWRFC\ConnectionException('mock received invalid config array!');
+                throw new ConnectionException('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -652,41 +656,41 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\ConnectionException('mock connection already closed!');
+                throw new ConnectionException('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== 'RFC_WALK_THRU_TEST') {
-                throw new \SAPNWRFC\FunctionCallException('expected RFC_WALK_THRU_TEST as mock function name!');
+                throw new FunctionCallException('expected RFC_WALK_THRU_TEST as mock function name!');
             }
             $flags->func = $name;
         });
         static::mock('\SAPNWRFC\Connection::getFunction', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== 'RFC_WALK_THRU_TEST') {
-                throw new \SAPNWRFC\FunctionCallException('expected RFC_WALK_THRU_TEST as mock function name!');
+                throw new FunctionCallException('expected RFC_WALK_THRU_TEST as mock function name!');
             }
-            return new \SAPNWRFC\RemoteFunction($name);
+            return new RemoteFunction($name);
         });
         static::mock('\SAPNWRFC\RemoteFunction::getFunctionDescription', static function () use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             return $flags->api;
         });
         static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($flags->func !== 'RFC_WALK_THRU_TEST') {
-                throw new \SAPNWRFC\FunctionCallException('function not correctly initialized!');
+                throw new FunctionCallException('function not correctly initialized!');
             }
             return [
                 'TEST_OUT' => [
@@ -721,7 +725,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     protected function mockFailedRemoteFunctionCallWithParameters()
     {
         //Use an object for connection flag and function name.
-        $flags = new \stdClass();
+        $flags = new stdClass();
         $flags->conn = false;
         $flags->func = null;
         $flags->api = static::$rfcReadTableApi;
@@ -739,7 +743,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new \SAPNWRFC\ConnectionException('mock received invalid config array!');
+                throw new ConnectionException('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -747,37 +751,37 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\ConnectionException('mock connection already closed!');
+                throw new ConnectionException('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== 'RFC_READ_TABLE') {
-                throw new \SAPNWRFC\FunctionCallException('expected RFC_READ_TABLE as mock function name!');
+                throw new FunctionCallException('expected RFC_READ_TABLE as mock function name!');
             }
             $flags->func = $name;
         });
         static::mock('\SAPNWRFC\RemoteFunction::getFunctionDescription', static function () use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             return $flags->api;
         });
         static::mock('\SAPNWRFC\Connection::getFunction', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== 'RFC_READ_TABLE') {
-                throw new \SAPNWRFC\FunctionCallException('expected RFC_READ_TABLE as mock function name!');
+                throw new FunctionCallException('expected RFC_READ_TABLE as mock function name!');
             }
-            return new \SAPNWRFC\RemoteFunction($name);
+            return new RemoteFunction($name);
         });
         static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) use ($flags) {
-            throw new \SAPNWRFC\FunctionCallException('mock function call exception!');
+            throw new FunctionCallException('mock function call exception!');
         });
     }
 }

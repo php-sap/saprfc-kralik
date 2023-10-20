@@ -19,9 +19,9 @@ trait ConfigTrait
 {
     /**
      * Get the module specific connection configuration.
-     * @param \phpsap\interfaces\Config\IConfiguration $config
+     * @param IConfiguration $config
      * @return array
-     * @throws \phpsap\interfaces\exceptions\IIncompleteConfigException
+     * @throws IIncompleteConfigException
      */
     protected function getModuleConfig(IConfiguration $config): array
     {
@@ -35,9 +35,9 @@ trait ConfigTrait
      * Only type A and B configurations are supported by this module,
      * its common classes and its interface. Therefore, we do not
      * expect any other types here.
-     * @param \phpsap\interfaces\Config\IConfiguration $config
+     * @param IConfiguration $config
      * @return array
-     * @throws \phpsap\interfaces\exceptions\IIncompleteConfigException
+     * @throws IIncompleteConfigException
      */
     private function getSpecificConfig(IConfiguration $config): array
     {

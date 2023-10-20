@@ -10,6 +10,7 @@ use phpsap\exceptions\IncompleteConfigException;
 use phpsap\exceptions\SapLogicException;
 use phpsap\exceptions\UnknownFunctionException;
 use phpsap\interfaces\exceptions\IIncompleteConfigException;
+use phpsap\interfaces\exceptions\IInvalidArgumentException;
 use phpsap\saprfc\Traits\ApiTrait;
 use phpsap\saprfc\Traits\ConfigTrait;
 use phpsap\saprfc\Traits\ParamTrait;
@@ -35,12 +36,12 @@ class SapRfc extends AbstractFunction
     use ParamTrait;
 
     /**
-     * @var \SAPNWRFC\Connection
+     * @var Connection
      */
     private $connection;
 
     /**
-     * @var \SAPNWRFC\RemoteFunction
+     * @var RemoteFunction
      */
     private $function;
 
@@ -67,10 +68,10 @@ class SapRfc extends AbstractFunction
 
     /**
      * Create a remote function call resource.
-     * @return \SAPNWRFC\RemoteFunction
-     * @throws \phpsap\exceptions\ConnectionFailedException
-     * @throws \phpsap\exceptions\IncompleteConfigException
-     * @throws \phpsap\exceptions\UnknownFunctionException
+     * @return RemoteFunction
+     * @throws ConnectionFailedException
+     * @throws IncompleteConfigException
+     * @throws UnknownFunctionException
      */
     protected function getFunction(): RemoteFunction
     {
@@ -96,9 +97,9 @@ class SapRfc extends AbstractFunction
     /**
      * Open a connection in case it hasn't been done yet and return the
      * connection resource.
-     * @return \SAPNWRFC\Connection
-     * @throws \phpsap\exceptions\ConnectionFailedException
-     * @throws \phpsap\exceptions\IncompleteConfigException
+     * @return Connection
+     * @throws ConnectionFailedException
+     * @throws IncompleteConfigException
      */
     protected function getConnection(): Connection
     {
@@ -183,9 +184,9 @@ class SapRfc extends AbstractFunction
      * Extract the remote function API from the function object and remove
      * unwanted variables.
      * @return array
-     * @throws \phpsap\exceptions\ConnectionFailedException
-     * @throws \phpsap\exceptions\IncompleteConfigException
-     * @throws \phpsap\exceptions\UnknownFunctionException
+     * @throws ConnectionFailedException
+     * @throws IncompleteConfigException
+     * @throws UnknownFunctionException
      */
     public function saprfcFunctionInterface(): array
     {
@@ -200,7 +201,7 @@ class SapRfc extends AbstractFunction
 
     /**
      * @inheritDoc
-     * @throws \phpsap\interfaces\exceptions\IInvalidArgumentException
+     * @throws IInvalidArgumentException
      */
     public function invoke(): array
     {

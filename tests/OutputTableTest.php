@@ -4,6 +4,15 @@ namespace tests\phpsap\saprfc;
 
 use phpsap\classes\Api\RemoteApi;
 use phpsap\IntegrationTests\AbstractTestCase;
+use phpsap\interfaces\exceptions\IConnectionFailedException;
+use phpsap\interfaces\exceptions\IFunctionCallException;
+use phpsap\interfaces\exceptions\IIncompleteConfigException;
+use phpsap\interfaces\exceptions\IInvalidArgumentException;
+use phpsap\interfaces\exceptions\IUnknownFunctionException;
+use SAPNWRFC\ConnectionException;
+use SAPNWRFC\FunctionCallException;
+use SAPNWRFC\RemoteFunction;
+use stdClass;
 use tests\phpsap\saprfc\Traits\TestCaseTrait;
 
 /**
@@ -335,7 +344,7 @@ class OutputTableTest extends AbstractTestCase
     public function mockRfcOutputTable()
     {
         //Use an object for connection flag and function name.
-        $flags = new \stdClass();
+        $flags = new stdClass();
         $flags->conn = false;
         $flags->name = 'RFC_OUTPUT_TABLE';
         $flags->func = null;
@@ -355,7 +364,7 @@ class OutputTableTest extends AbstractTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new \SAPNWRFC\ConnectionException('mock received invalid config array!');
+                throw new ConnectionException('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -363,41 +372,41 @@ class OutputTableTest extends AbstractTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\ConnectionException('mock connection already closed!');
+                throw new ConnectionException('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
         });
         static::mock('\SAPNWRFC\RemoteFunction::__construct', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== $flags->name) {
-                throw new \SAPNWRFC\FunctionCallException('expected ' . $flags->name . ' as mock function name!');
+                throw new FunctionCallException('expected ' . $flags->name . ' as mock function name!');
             }
             $flags->func = $name;
         });
         static::mock('\SAPNWRFC\Connection::getFunction', static function ($name) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($name !== $flags->name) {
-                throw new \SAPNWRFC\FunctionCallException('expected ' . $flags->name . ' as mock function name!');
+                throw new FunctionCallException('expected ' . $flags->name . ' as mock function name!');
             }
-            return new \SAPNWRFC\RemoteFunction($name);
+            return new RemoteFunction($name);
         });
         static::mock('\SAPNWRFC\RemoteFunction::getFunctionDescription', static function () use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             return $flags->api;
         });
         static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) use ($flags) {
             if ($flags->conn !== true) {
-                throw new \SAPNWRFC\FunctionCallException('mock connection not open!');
+                throw new FunctionCallException('mock connection not open!');
             }
             if ($flags->func !== $flags->name) {
-                throw new \SAPNWRFC\FunctionCallException('function not correctly initialized!');
+                throw new FunctionCallException('function not correctly initialized!');
             }
             return $flags->response;
         });
@@ -405,11 +414,11 @@ class OutputTableTest extends AbstractTestCase
 
     /**
      * Test the API description and the response from an RFC output table.
-     * @throws \phpsap\interfaces\exceptions\IConnectionFailedException
-     * @throws \phpsap\interfaces\exceptions\IFunctionCallException
-     * @throws \phpsap\interfaces\exceptions\IIncompleteConfigException
-     * @throws \phpsap\interfaces\exceptions\IUnknownFunctionException
-     * @throws \phpsap\interfaces\exceptions\IInvalidArgumentException
+     * @throws IConnectionFailedException
+     * @throws IFunctionCallException
+     * @throws IIncompleteConfigException
+     * @throws IUnknownFunctionException
+     * @throws IInvalidArgumentException
      */
     public function testRfcOutputTable()
     {

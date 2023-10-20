@@ -48,8 +48,8 @@ trait ApiTrait
     /**
      * Create either struct or table members from the def array of the remote function API.
      * @param array $def The complete API value defintion.
-     * @return \phpsap\classes\Api\Element[] An array of IElement compatible objects.
-     * @throws \phpsap\exceptions\SapLogicException In case a datatype is missing in the mappings array.
+     * @return Element[] An array of IElement compatible objects.
+     * @throws SapLogicException In case a datatype is missing in the mappings array.
      */
     private function createMembers($def): array
     {
@@ -66,7 +66,7 @@ trait ApiTrait
      * Convert SAP Netweaver RFC types into PHP/SAP types.
      * @param string $type The remote function parameter type.
      * @return string The PHP/SAP internal data type.
-     * @throws \phpsap\exceptions\SapLogicException
+     * @throws SapLogicException
      */
     private function mapType($type): string
     {
@@ -96,7 +96,7 @@ trait ApiTrait
      * Convert SAP Netweaver RFC directions into PHP/SAP directions.
      * @param string $direction The remote function parameter direction.
      * @return string The PHP/SAP internal direction.
-     * @throws \phpsap\exceptions\SapLogicException
+     * @throws SapLogicException
      */
     private function mapDirection($direction): string
     {
