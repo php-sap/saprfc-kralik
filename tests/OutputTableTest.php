@@ -428,7 +428,7 @@ class OutputTableTest extends AbstractTestCase
         );
         //remote function call
         $response = $saprfc->invoke();
-        static::assertInternalType('array', $response);
+        static::assertIsArray($response);
         static::assertCount(1, $response);
         static::assertArrayHasKey('ET_API_ANGEBOT_ADRESSE', $response);
         static::assertCount(2, $response['ET_API_ANGEBOT_ADRESSE']);
