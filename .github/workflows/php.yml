@@ -1,0 +1,70 @@
+name: "PHP"
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+permissions:
+  contents: "read"
+jobs:
+  # PHP lint for different PHP versions
+  build:
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        php-version:
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+    env:
+      CC_TEST_REPORTER_ID: "b55ff60ba178ed6d17d568f49e8c6034e54aee0cfaf765c317a8545aeafe1215"
+    name: "PHP ${{ matrix.php-version }}"
+    steps:
+      - # git checkout
+        name: "git checkout"
+        uses: "actions/checkout@v3"
+      - # Setup PHP
+        name: "Setup PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          coverage: "xdebug"
+      - # Check PHP version
+        name: "Check PHP version"
+        run: "php -v"
+      - # Lint PHP files
+        name: "Lint PHP files"
+        run: |
+          for file in $(find ./ -type f -name '*.php'); do
+            echo -n "==> ${file}: ";
+            php -l "${file}";
+          done
+      - # Validate composer.json and composer.lock
+        name: "Validate composer.json and composer.lock"
+        run: "composer validate --strict"
+      - # Cache Composer packages
+        name: "Cache Composer packages"
+        id: "composer-cache"
+        uses: "actions/cache@v3"
+        with:
+          path: "vendor"
+          key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+          restore-keys: "${{ runner.os }}-php-"
+      - # Install dependencies
+        name: "Install composer dependencies"
+        run: "composer install --prefer-dist --no-progress"
+      - # CodeClimate Reporter Setup
+        name: "CodeClimate Reporter Setup"
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+      - # Run phpunit
+        name: "Run phpunit"
+        run: |
+          php vendor/bin/phpunit --coverage-clover clover.xml --coverage-text
+          ./cc-test-reporter after-build -t clover --exit-code $?
