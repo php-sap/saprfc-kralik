@@ -7,7 +7,6 @@
         convertWarningsToExceptions="true"
         stopOnError="false"
         stopOnFailure="false"
-        syntaxCheck="true"
 >
     <testsuites>
         <testsuite name="Test PHP/SAP implementation for Kraliks sapnwrfc module.">
