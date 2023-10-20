@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace phpsap\saprfc\Traits;
 
 use phpsap\classes\Api\Element;

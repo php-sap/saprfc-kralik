@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\phpsap\saprfc\Traits;
 
 use phpsap\saprfc\SapRfc;
