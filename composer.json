@@ -38,7 +38,8 @@
   "require-dev": {
     "ext-json": "*",
     "phpunit/phpunit": "^9.6",
-    "php-sap/integration-tests": "^6.0"
+    "php-sap/integration-tests": "^6.0",
+    "squizlabs/php_codesniffer": "^3.7"
   },
   "autoload": {
     "psr-4": {
