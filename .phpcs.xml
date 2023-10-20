@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="PSR12" namespace="GregorJ\Standards">
+    <description>PSR12 programming standard</description>
+    <!-- display progress -->
+    <arg value="p"/>
+    <arg value="n"/>
+    <!-- directories and files to check -->
+    <file>./src</file>
+    <file>./tests</file>
+    <!-- Use PSR12 as a standard -->
+    <rule ref="PSR12">
+    </rule>
+</ruleset>
