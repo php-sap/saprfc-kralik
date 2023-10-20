@@ -1,7 +1,6 @@
 # PHP/SAP implementation for Gregor Kraliks sapnwrfc module
 
 [![License: MIT][license-mit]](LICENSE)
-[![Build Status][travis-badge]][travis-ci]
 [![Maintainability][maintainability-badge]][maintainability]
 [![Test Coverage][coverage-badge]][coverage]
 
@@ -53,8 +52,6 @@ For further documentation, please read the documentation on [PHP/SAP][phpsap]!
 [phpsap]: https://php-sap.github.io
 [kralik]: https://github.com/gkralik/php7-sapnwrfc "SAP NW RFC SDK extension for PHP7"
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
-[travis-badge]: https://travis-ci.org/php-sap/saprfc-kralik.svg?branch=master
-[travis-ci]: https://travis-ci.org/php-sap/saprfc-kralik
 [maintainability-badge]: https://api.codeclimate.com/v1/badges/d94f95bad2040c993c65/maintainability
 [maintainability]: https://codeclimate.com/github/php-sap/saprfc-kralik/maintainability
 [coverage-badge]: https://api.codeclimate.com/v1/badges/d94f95bad2040c993c65/test_coverage
