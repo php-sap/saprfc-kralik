@@ -517,16 +517,16 @@
         },
         {
             "name": "php-sap/integration-tests",
-            "version": "v6.0.0",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "f5d667563eedf106e8f0ff187529887b3512ae45"
+                "reference": "906b485a75fc97fe1766fde444eda0ab13bf71d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/f5d667563eedf106e8f0ff187529887b3512ae45",
-                "reference": "f5d667563eedf106e8f0ff187529887b3512ae45",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/906b485a75fc97fe1766fde444eda0ab13bf71d5",
+                "reference": "906b485a75fc97fe1766fde444eda0ab13bf71d5",
                 "shasum": ""
             },
             "require": {
@@ -561,9 +561,9 @@
             "homepage": "https://php-sap.github.io/",
             "support": {
                 "issues": "https://github.com/php-sap/integration-tests/issues",
-                "source": "https://github.com/php-sap/integration-tests/tree/v6.0.0"
+                "source": "https://github.com/php-sap/integration-tests/tree/v6.0.1"
             },
-            "time": "2023-10-19T15:11:52+00:00"
+            "time": "2023-10-20T10:09:30+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
