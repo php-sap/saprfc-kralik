@@ -81,7 +81,7 @@ trait TestCaseTrait
     /**
      * Remove sapnwrfc trace file.
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         $traceFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'dev_rfc.trc';
         if (file_exists($traceFile)) {
