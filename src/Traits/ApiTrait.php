@@ -30,10 +30,10 @@ trait ApiTrait
      * @param string $type      The type of the parameter or return value.
      * @param string $direction The direction indicating whether it's a parameter or
      *                          return value.
-     * @param array  $def       The complete API value defintion from the module.
+     * @param array $def       The complete API value defintion from the module.
      * @return Value|Struct|Table
      */
-    private function createApiValue($name, $type, $direction, $def)
+    private function createApiValue(string $name, string $type, string $direction, array $def)
     {
         $optional = $def['optional'];
         if ($type === ITable::TYPE_TABLE) {
@@ -51,7 +51,7 @@ trait ApiTrait
      * @return Element[] An array of IElement compatible objects.
      * @throws SapLogicException In case a datatype is missing in the mappings array.
      */
-    private function createMembers($def): array
+    private function createMembers(array $def): array
     {
         $result = [];
         if (array_key_exists('typedef', $def) && is_array($def['typedef'])) {
@@ -68,7 +68,7 @@ trait ApiTrait
      * @return string The PHP/SAP internal data type.
      * @throws SapLogicException
      */
-    private function mapType($type): string
+    private function mapType(string $type): string
     {
         $mapping = [
             'RFCTYPE_DATE'      => IElement::TYPE_DATE,
@@ -98,7 +98,7 @@ trait ApiTrait
      * @return string The PHP/SAP internal direction.
      * @throws SapLogicException
      */
-    private function mapDirection($direction): string
+    private function mapDirection(string $direction): string
     {
         $mapping = [
             'RFC_EXPORT' => IValue::DIRECTION_OUTPUT,
