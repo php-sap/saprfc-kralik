@@ -38,14 +38,14 @@ class SapRfc extends AbstractFunction
     use ParamTrait;
 
     /**
-     * @var Connection
+     * @var Connection|null
      */
-    private Connection $connection;
+    private ?Connection $connection = null;
 
     /**
-     * @var RemoteFunction
+     * @var RemoteFunction|null
      */
-    private RemoteFunction $function;
+    private ?RemoteFunction $function = null;
 
     /**
      * @var array Which options to use for invoke() method of the module.
