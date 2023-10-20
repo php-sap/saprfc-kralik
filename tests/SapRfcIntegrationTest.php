@@ -495,7 +495,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * Clean up after tests.
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         $devRfcTrc = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'dev_rfc.trc';
