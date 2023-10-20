@@ -13,6 +13,7 @@ use phpsap\interfaces\Api\IElement;
 use phpsap\interfaces\Api\IStruct;
 use phpsap\interfaces\Api\ITable;
 use phpsap\interfaces\Api\IValue;
+
 use function array_key_exists;
 use function is_array;
 use function sprintf;

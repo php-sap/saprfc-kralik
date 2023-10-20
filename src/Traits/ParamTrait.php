@@ -10,6 +10,7 @@ use phpsap\interfaces\Api\IStruct;
 use phpsap\interfaces\Api\ITable;
 use phpsap\interfaces\Api\IValue;
 use phpsap\interfaces\exceptions\IInvalidArgumentException;
+
 use function array_key_exists;
 use function count;
 use function is_array;
@@ -62,7 +63,8 @@ trait ParamTrait
         $result = [];
         foreach ($tables as $table) {
             $key = $table->getName();
-            if (array_key_exists($key, $params)
+            if (
+                array_key_exists($key, $params)
                 && is_array($params[$key])
                 && count($params[$key]) > 0
             ) {
