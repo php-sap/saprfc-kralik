@@ -19,7 +19,7 @@ trait TestCaseTrait
      * Return the name of the class, used for testing.
      * @return string
      */
-    public static function getClassName()
+    public static function getClassName(): string
     {
         return SapRfc::class;
     }
@@ -28,7 +28,7 @@ trait TestCaseTrait
      * Get the name of the PHP module.
      * @return string
      */
-    public static function getModuleName()
+    public static function getModuleName(): string
     {
         return 'sapnwrfc';
     }
@@ -37,7 +37,7 @@ trait TestCaseTrait
      * Get the path to the PHP/SAP configuration file.
      * @return string
      */
-    public static function getSapConfigFile()
+    public static function getSapConfigFile(): string
     {
         return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'sap.json';
     }
@@ -46,7 +46,7 @@ trait TestCaseTrait
      * Get the path to the filename containing the SAP RFC module mockups.
      * @return string
      */
-    public static function getModuleTemplateFile()
+    public static function getModuleTemplateFile(): string
     {
         return dirname(__DIR__) . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR . 'SAPNWRFC.php';
     }
@@ -55,7 +55,7 @@ trait TestCaseTrait
      * Get an array of valid SAP RFC module function or class method names.
      * @return array
      */
-    public static function getValidModuleFunctions()
+    public static function getValidModuleFunctions(): array
     {
         return [
             'clearFunctionDescCache',
