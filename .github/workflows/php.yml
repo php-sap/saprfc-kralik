@@ -54,6 +54,9 @@ jobs:
       - # Install dependencies
         name: "Install composer dependencies"
         run: "composer install --prefer-dist --no-progress --ignore-platform-req=ext-sapnwrfc"
+      - # PHP_CodeSniffer
+        name: "PHP_CodeSniffer"
+        run: "php vendor/bin/phpcs"
       - # CodeClimate Reporter Setup
         name: "CodeClimate Reporter Setup"
         run: |
