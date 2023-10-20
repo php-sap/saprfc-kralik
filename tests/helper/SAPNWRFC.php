@@ -104,19 +104,19 @@ class Connection
     /**
      * Disable SAP remote function call tracing.
      */
-    const TRACE_LEVEL_OFF = 0;
+    public const TRACE_LEVEL_OFF = 0;
     /**
      * Brief tracing of SAP remote function calls.
      */
-    const TRACE_LEVEL_BRIEF = 1;
+    public const TRACE_LEVEL_BRIEF = 1;
     /**
      * Verbose tracing of SAP remote function calls.
      */
-    const TRACE_LEVEL_VERBOSE = 2;
+    public const TRACE_LEVEL_VERBOSE = 2;
     /**
      * Debug-like tracing of SAP remote function calls.
      */
-    const TRACE_LEVEL_FULL = 3;
+    public const TRACE_LEVEL_FULL = 3;
 
     /**
      * Connect to the system using the given parameters.
