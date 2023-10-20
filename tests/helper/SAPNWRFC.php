@@ -2,7 +2,7 @@
 /**
  * phpcs:ignoreFile
  * @codingStandardsIgnoreFile
- * @noinspection PhpMultipleClassesDeclarationsInOneFile
+ * @noinspection ALL
  */
 /**
  * THIS FILE HAS BLUNTLY BEEN COPIED FROM
