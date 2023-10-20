@@ -38,17 +38,17 @@ class SapRfc extends AbstractFunction
     /**
      * @var Connection
      */
-    private $connection;
+    private Connection $connection;
 
     /**
      * @var RemoteFunction
      */
-    private $function;
+    private RemoteFunction $function;
 
     /**
      * @var array Which options to use for invoke() method of the module.
      */
-    private static $invokeOptions = [
+    private static array $invokeOptions = [
         'rtrim' => true
     ];
 

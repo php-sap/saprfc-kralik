@@ -26,7 +26,7 @@ class OutputTableTest extends AbstractTestCase
 {
     use TestCaseTrait;
 
-    public static $apiRaw = [
+    public static array $apiRaw = [
         'ET_API_ANGEBOT_ADRESSE' => [
             'name' => 'ET_API_ANGEBOT_ADRESSE',
             'type' => 'RFCTYPE_TABLE',
@@ -293,7 +293,7 @@ class OutputTableTest extends AbstractTestCase
      * Mocked function call response array.
      * @var array
      */
-    public static $responseRaw = [
+    public static array $responseRaw = [
         'ET_API_ANGEBOT_ADRESSE' => [
             0 => [
                 'KUNNR' => 'efhNQr886li8Zn5RhfMp',

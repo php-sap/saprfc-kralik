@@ -26,7 +26,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @var array The raw API of the RFC walk through test as seen by the module.
      */
-    public static $rfcWalkThruTestApi = [
+    public static array $rfcWalkThruTestApi = [
         'TEST_OUT' => [
             'name' => 'TEST_OUT',
             'type' => 'RFCTYPE_STRUCTURE',
@@ -336,7 +336,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @var array raw API of RFC read table
      */
-    public static $rfcReadTableApi = [
+    public static array $rfcReadTableApi = [
         'DELIMITER' => [
             'name' => 'DELIMITER',
             'type' => 'RFCTYPE_CHAR',
