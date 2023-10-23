@@ -30,8 +30,8 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.4",
-    "ext-sapnwrfc": "^1.4",
+    "php": "^8.1",
+    "ext-sapnwrfc": "^2.0",
     "php-sap/interfaces": "^4.0",
     "php-sap/common": "^5.0"
   },
