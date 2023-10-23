@@ -80,6 +80,7 @@ trait ApiTrait
             'RFCTYPE_NUM'       => IElement::TYPE_INTEGER,
             'RFCTYPE_INT1'      => IElement::TYPE_INTEGER,
             'RFCTYPE_INT2'      => IElement::TYPE_INTEGER,
+            'RFCTYPE_INT8'      => IElement::TYPE_INTEGER,
             'RFCTYPE_BCD'       => IElement::TYPE_FLOAT,
             'RFCTYPE_FLOAT'     => IElement::TYPE_FLOAT,
             'RFCTYPE_CHAR'      => IElement::TYPE_STRING,
