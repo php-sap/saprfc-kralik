@@ -16,6 +16,8 @@
  */
 namespace SAPNWRFC;
 
+use Exception as PhpException;
+
 /**
  * Either run tests using this mock of the sapnwrfc class or run the tests with the
  * actual module and an actual SAP system.
@@ -80,14 +82,6 @@ class Exception extends \RuntimeException
 }
 
 /**
- * Class ConnectionException
- * @package SAPNWRFC
- */
-class ConnectionException extends Exception
-{
-}
-
-/**
  * Class FunctionCallException
  * @package SAPNWRFC
  */
@@ -126,7 +120,7 @@ class Connection
      *      @var bool $use_function_desc_cache Use function desc cache (defaults to `true`)
      * }
      *
-     * @throws ConnectionException if the connection fails.
+     * @throws PhpException if the connection fails.
      */
     public function __construct(array $parameters, array $options = [])
     {
@@ -140,7 +134,7 @@ class Connection
      *
      * @return array Array of connection attributes.
      *
-     * @throws ConnectionException if the connection attributes could not be
+     * @throws PhpException if the connection attributes could not be
      *                             fetched.
      */
     public function getAttributes(): array
@@ -153,7 +147,7 @@ class Connection
     /**
      * @return bool True if ping successful.
      *
-     * @throws ConnectionException if the ping failed.
+     * @throws PhpException if the ping failed.
      */
     public function ping(): bool
     {
@@ -185,7 +179,7 @@ class Connection
      * @return bool True if the connection was closed, false if the connection
      *              is closed already.
      *
-     * @throws ConnectionException if the connection could not be closed.
+     * @throws PhpException if the connection could not be closed.
      */
     public function close(): bool
     {
@@ -203,7 +197,7 @@ class Connection
      *
      * @return bool True if path was set.
      *
-     * @throws ConnectionException if path could not be set.
+     * @throws PhpException if path could not be set.
      */
     public static function setIniPath(string $path): bool
     {
@@ -220,7 +214,7 @@ class Connection
      *
      * @return bool True if INI file was reloaded.
      *
-     * @throws ConnectionException if the INI file could not be reloaded.
+     * @throws PhpException if the INI file could not be reloaded.
      */
     public static function reloadIniFile(): bool
     {
@@ -236,7 +230,7 @@ class Connection
      *
      * @return bool True if path was set.
      *
-     * @throws ConnectionException if path could not be set.
+     * @throws PhpException if path could not be set.
      */
     public static function setTraceDir(string $path): bool
     {
@@ -252,7 +246,7 @@ class Connection
      *
      * @return bool True if level was set.
      *
-     * @throws ConnectionException if level could not be set.
+     * @throws PhpException if level could not be set.
      */
     public static function setTraceLevel(int $level): bool
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace phpsap\saprfc;
 
+use Exception;
 use phpsap\classes\AbstractFunction;
 use phpsap\classes\Api\RemoteApi;
 use phpsap\exceptions\ConnectionFailedException;
@@ -17,9 +18,9 @@ use phpsap\saprfc\Traits\ApiTrait;
 use phpsap\saprfc\Traits\ConfigTrait;
 use phpsap\saprfc\Traits\ParamTrait;
 use SAPNWRFC\Connection;
-use SAPNWRFC\ConnectionException as ModuleConnectionException;
 use SAPNWRFC\FunctionCallException as ModuleFunctionCallException;
 use SAPNWRFC\RemoteFunction;
+use TypeError;
 
 use function array_merge;
 use function get_object_vars;
@@ -141,7 +142,7 @@ class SapRfc extends AbstractFunction
                     Connection::setTraceLevel($config->getTrace());
                 }
                 $this->connection = new Connection($moduleConfig);
-            } catch (ModuleConnectionException $exception) {
+            } catch (Exception | TypeError $exception) {
                 throw new ConnectionFailedException(sprintf(
                     'Connection creation failed: %s',
                     $exception->getMessage()

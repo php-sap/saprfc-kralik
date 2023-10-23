@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace tests\phpsap\saprfc;
 
+use Exception;
 use phpsap\classes\Api\RemoteApi;
 use phpsap\IntegrationTests\AbstractTestCase;
 use phpsap\interfaces\exceptions\IConnectionFailedException;
@@ -11,7 +12,6 @@ use phpsap\interfaces\exceptions\IFunctionCallException;
 use phpsap\interfaces\exceptions\IIncompleteConfigException;
 use phpsap\interfaces\exceptions\IInvalidArgumentException;
 use phpsap\interfaces\exceptions\IUnknownFunctionException;
-use SAPNWRFC\ConnectionException;
 use SAPNWRFC\FunctionCallException;
 use SAPNWRFC\RemoteFunction;
 use stdClass;
@@ -367,7 +367,7 @@ class OutputTableTest extends AbstractTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new ConnectionException('mock received invalid config array!');
+                throw new Exception('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -375,7 +375,7 @@ class OutputTableTest extends AbstractTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new ConnectionException('mock connection already closed!');
+                throw new Exception('mock connection already closed!');
             }
             $flags->conn = false;
             return true;

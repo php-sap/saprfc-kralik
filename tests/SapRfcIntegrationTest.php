@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace tests\phpsap\saprfc;
 
+use Exception;
 use phpsap\IntegrationTests\AbstractSapRfcTestCase;
-use SAPNWRFC\ConnectionException;
 use SAPNWRFC\FunctionCallException;
 use SAPNWRFC\RemoteFunction;
 use stdClass;
@@ -516,7 +516,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     protected function mockConnectionFailed()
     {
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) {
-            throw new ConnectionException('mock failed connection');
+            throw new Exception('mock failed connection');
         });
     }
 
@@ -543,7 +543,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new ConnectionException('mock received invalid config array!');
+                throw new Exception('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -551,7 +551,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new ConnectionException('mock connection already closed!');
+                throw new Exception('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
@@ -610,7 +610,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new ConnectionException('mock received invalid config array!');
+                throw new Exception('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -618,7 +618,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new ConnectionException('mock connection already closed!');
+                throw new Exception('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
@@ -653,7 +653,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new ConnectionException('mock received invalid config array!');
+                throw new Exception('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -661,7 +661,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new ConnectionException('mock connection already closed!');
+                throw new Exception('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
@@ -749,7 +749,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
                 || $config['user'] !== $expectedConfig->getUser()
                 || $config['passwd'] !== $expectedConfig->getPasswd()
             ) {
-                throw new ConnectionException('mock received invalid config array!');
+                throw new Exception('mock received invalid config array!');
             }
             //set flag that a connection has been established
             $flags->conn = true;
@@ -757,7 +757,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
             //calling \SAPNWRFC\Connection::close twice has to fail
             if ($flags->conn !== true) {
-                throw new ConnectionException('mock connection already closed!');
+                throw new Exception('mock connection already closed!');
             }
             $flags->conn = false;
             return true;
