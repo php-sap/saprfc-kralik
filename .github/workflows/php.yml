@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - "main"
+      - "6-sapnwrfc2-support"
   pull_request:
     branches:
       - "main"
+      - "6-sapnwrfc2-support"
 permissions:
   contents: "read"
 jobs:
@@ -15,8 +17,8 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - "7.4"
           - "8.1"
+          - "8.2"
     env:
       CC_TEST_REPORTER_ID: "b55ff60ba178ed6d17d568f49e8c6034e54aee0cfaf765c317a8545aeafe1215"
     name: "PHP ${{ matrix.php-version }}"
