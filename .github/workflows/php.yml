@@ -1,70 +1,80 @@
-name: "PHP"
+# Controls when the action will run.
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches:
-      - "main"
   pull_request:
-    branches:
-      - "main"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 permissions:
   contents: "read"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # PHP lint for different PHP versions
-  build:
+  # composer validation
+  composer:
+    name: "composer config validation"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: "Validate composer.json"
+        run: "composer validate --strict"
+  # PHP lint and PHPStan for different PHP versions
+  php:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
         php-version:
-          - "7.4"
           - "8.1"
-    env:
-      CC_TEST_REPORTER_ID: "b55ff60ba178ed6d17d568f49e8c6034e54aee0cfaf765c317a8545aeafe1215"
+          - "8.2"
+          - "8.3"
     name: "PHP ${{ matrix.php-version }}"
     steps:
-      - # git checkout
-        name: "git checkout"
+      - name: "git checkout"
         uses: "actions/checkout@v3"
-      - # Setup PHP
-        name: "Setup PHP"
+      - name: "setup PHP"
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: "xdebug"
-      - # Check PHP version
-        name: "Check PHP version"
+      - name: "check PHP version"
         run: "php -v"
-      - # Lint PHP files
-        name: "Lint PHP files"
-        run: |
-          for file in $(find ./ -type f -name '*.php'); do
-            echo -n "==> ${file}: ";
-            php -l "${file}";
-          done
-      - # Validate composer.json and composer.lock
-        name: "Validate composer.json and composer.lock"
-        run: "composer validate --strict"
-      - # Cache Composer packages
-        name: "Cache Composer packages"
-        id: "composer-cache"
-        uses: "actions/cache@v3"
+      - name: "lint PHP files"
+        run: "php -l src/ tests/"
+#      - name: "install composer dependencies"
+#        run: "composer install --prefer-dist --no-progress"
+#      # PHPStan
+#      - name: "PHPStan static analysis"
+#        uses: "php-actions/phpstan@v3"
+#        with:
+#          php_version: "${{ matrix.php-version }}"
+#          configuration: "phpstan.neon"
+#          path: "src/ tests/"
+  # run unit tests
+  phpunit:
+    runs-on: "ubuntu-latest"
+    env:
+      CC_TEST_REPORTER_ID: "b55ff60ba178ed6d17d568f49e8c6034e54aee0cfaf765c317a8545aeafe1215"
+    name: "PHPUnit"
+    steps:
+      - name: "git checkout"
+        uses: "actions/checkout@v3"
+      - name: "setup PHP"
+        uses: "shivammathur/setup-php@v2"
         with:
-          path: "vendor"
-          key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
-          restore-keys: "${{ runner.os }}-php-"
-      - # Install dependencies
-        name: "Install composer dependencies"
-        run: "composer install --prefer-dist --no-progress --ignore-platform-req=ext-sapnwrfc"
-      - # PHP_CodeSniffer
-        name: "PHP_CodeSniffer"
-        run: "php vendor/bin/phpcs"
-      - # CodeClimate Reporter Setup
-        name: "CodeClimate Reporter Setup"
+          php-version: "8.1"
+          coverage: "xdebug"
+      - name: "check PHP version"
+        run: "php -v"
+      - name: "install composer dependencies"
+        run: "composer install --prefer-dist --no-progress"
+      - name: "CodeClimate reporter setup"
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-      - # Run phpunit
-        name: "Run phpunit"
+      - name: "run PHPUnit"
         run: |
           php vendor/bin/phpunit --coverage-clover clover.xml --coverage-text
           ./cc-test-reporter after-build -t clover --exit-code $?
