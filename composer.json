@@ -30,15 +30,15 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.4",
-    "ext-sapnwrfc": "^1.4",
-    "php-sap/interfaces": "^4.0",
-    "php-sap/common": "^5.0"
+    "php": "^8.1",
+    "ext-sapnwrfc": "^2.1",
+    "php-sap/interfaces": "dev-main",
+    "php-sap/common": "dev-main"
   },
   "require-dev": {
     "ext-json": "*",
     "phpunit/phpunit": "^9.6",
-    "php-sap/integration-tests": "^6.0",
+    "php-sap/integration-tests": "dev-main",
     "squizlabs/php_codesniffer": "^3.7"
   },
   "autoload": {
