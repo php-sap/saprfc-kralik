@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace phpsap\saprfc\Traits;
 
-use phpsap\interfaces\Config\IConfigCommon;
+use phpsap\exceptions\IncompleteConfigException;
 use phpsap\interfaces\Config\IConfigTypeA;
 use phpsap\interfaces\Config\IConfigTypeB;
 use phpsap\interfaces\Config\IConfiguration;
 use phpsap\interfaces\exceptions\IIncompleteConfigException;
 
 use function array_merge;
+use function get_class;
 
 /**
  * Trait ConfigTrait
@@ -47,7 +48,10 @@ trait ConfigTrait
         if ($config instanceof IConfigTypeA) {
             return $this->getTypeAConfig($config);
         }
-        return $this->getTypeBConfig($config);
+        if ($config instanceof IConfigTypeB) {
+            return $this->getTypeBConfig($config);
+        }
+        throw new IncompleteConfigException(sprintf('Unknown config type %s', get_class($config)));
     }
 
     /**
@@ -56,11 +60,11 @@ trait ConfigTrait
      * I chose a "stupid" (and repetitive) way because it is more readable
      * and thus better maintainable for others than an "intelligent" way.
      *
-     * @param IConfigCommon $config
+     * @param IConfiguration $config
      * @return array
      * @throws IIncompleteConfigException
      */
-    private function getCommonConfig(IConfigCommon $config): array
+    private function getCommonConfig(IConfiguration $config): array
     {
         $common = [];
         if ($config->getLang() !== null) {

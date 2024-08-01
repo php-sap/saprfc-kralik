@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace phpsap\saprfc\Traits;
 
 use phpsap\exceptions\FunctionCallException;
-use phpsap\interfaces\Api\IElement;
-use phpsap\interfaces\Api\IStruct;
-use phpsap\interfaces\Api\ITable;
-use phpsap\interfaces\Api\IValue;
+use phpsap\interfaces\Api\IApiElement;
 use phpsap\interfaces\exceptions\IInvalidArgumentException;
 
 use function array_key_exists;
 use function count;
 use function is_array;
-use function is_string;
 use function sprintf;
 
 /**
@@ -28,7 +24,7 @@ trait ParamTrait
     /**
      * Generate a function call parameter array from a list of known input values
      * and the previously set parameters.
-     * @param IValue[] $inputs API input values.
+     * @param IApiElement[] $inputs API input values.
      * @param array                           $params Parameters
      * @return array
      * @throws FunctionCallException
@@ -54,7 +50,7 @@ trait ParamTrait
     /**
      * Generate a function call parameter array from a list of known tables and the
      * previously set parameters.
-     * @param ITable[] $tables
+     * @param IApiElement[] $tables
      * @param array                           $params
      * @return array
      */
@@ -75,12 +71,12 @@ trait ParamTrait
     }
 
     /**
-     * @param IValue[] $outputs
+     * @param IApiElement[] $outputs
      * @param array                           $result
      * @return array
      * @throws IInvalidArgumentException
      */
-    private function castOutputValues(array $outputs, array $result): array
+    private function castOutput(array $outputs, array $result): array
     {
         $return = [];
         foreach ($outputs as $output) {
