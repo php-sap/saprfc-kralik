@@ -21,7 +21,7 @@ namespace SAPNWRFC;
  * actual module and an actual SAP system.
  */
 if (extension_loaded('sapnwrfc')) {
-    throw new \RuntimeException('PHP module sapnwrfc is loaded. Cannot run tests using mockups.');
+    die('PHP module sapnwrfc is loaded. Cannot run tests using mockups.');
 }
 
 /**
@@ -73,7 +73,7 @@ class Exception extends \RuntimeException
      *
      * @returns array|null
      */
-    public function getErrorInfo(): array
+    public function getErrorInfo(): ?array
     {
         return $this->errorInfo;
     }
@@ -102,21 +102,34 @@ class FunctionCallException extends Exception
 class Connection
 {
     /**
-     * Disable SAP remote function call tracing.
+     * Off. Only severe errors are logged to the dev_rfc.log file.
+     * @var int
      */
     public const TRACE_LEVEL_OFF = 0;
     /**
-     * Brief tracing of SAP remote function calls.
+     * Brief. All API calls (except for the setter and getter functions) and important attributes like codepages,
+     * RFC headers, logon parameters are traced. Trace is written to a file named rfc<pid>.trc or
+     * rfc<pid>_<tid>.trc, depending on whether tracing is done on a "per-process" basis or a "per-thread" basis.
+     * <pid> is the current process ID, <tid> the current thread ID.
+     * @var int
      */
     public const TRACE_LEVEL_BRIEF = 1;
     /**
-     * Verbose tracing of SAP remote function calls.
+     * Verbose. In addition to 1, the values of the "scalar" RFC parameters as well as the contents of the network
+     * containers are traced. Scalar parameters are primitive types (CHAR, INT, FLOAT, etc) and flat structures.
+     * @var int
      */
     public const TRACE_LEVEL_VERBOSE = 2;
     /**
-     * Debug-like tracing of SAP remote function calls.
+     * Detailed. In addition to 2 the contents of nested structures and tables and hexdumps are traced.
+     * @var int
      */
-    public const TRACE_LEVEL_FULL = 3;
+    public const TRACE_LEVEL_DETAILED = 3;
+    /**
+     * Full. In addition to 3 all API calls of setter and getter functions and table operations are traced.
+     * @var int
+     */
+    public const TRACE_LEVEL_FULL = 4;
 
     /**
      * Connect to the system using the given parameters.
@@ -166,17 +179,39 @@ class Connection
      * Lookup a RFC function and return a RemoteFunction object.
      *
      * @param string $functionnName Name of the function.
+     * @param bool   $invalidateCache If true, invalidates the function desc cache.
      *
      * @return RemoteFunction A RemoteFunction class for the RFC function.
      *
      * @throws FunctionCallException if the lookup fails or an error is
      *                               returned during parameter parsing.
      */
-    public function getFunction(string $functionName): RemoteFunction
+    public function getFunction(string $functionName, bool $invalidateCache = false): RemoteFunction
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
             ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
         return $func($functionName);
+    }
+
+    /**
+     * Retrieve a SSO ticket from the connection.
+     *
+     * For this to work, the connection must be opened with parameter `GETSSO2=1`
+     * and the profile parameter `login/create_sso2_ticket` must be set to a value
+     * different from '0' in the backend.
+     *
+     * Note: To retrieve a SSO ticket from the connection, SDK version 7.50.1 or
+     * later is required.
+     *
+     * @return string The SSO ticket.
+     *
+     * @throws ConnectionException if no SSO ticket could be retrieved.
+     */
+    public function getSSOTicket(): string
+    {
+        $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
+        return $func();
     }
 
     /**
@@ -234,7 +269,7 @@ class Connection
      *
      * @param string $path Path to trace directory (must exist).
      *
-     * @return bool True if path was set.
+     * @return true True if path was set (BC).
      *
      * @throws ConnectionException if path could not be set.
      */
@@ -250,7 +285,7 @@ class Connection
      *
      * @param int $level Trace level.
      *
-     * @return bool True if level was set.
+     * @return true True if trace level was set (BC).
      *
      * @throws ConnectionException if level could not be set.
      */
@@ -262,13 +297,33 @@ class Connection
     }
 
     /**
+     * Sets the global logon timeout in seconds.
+     *
+     * Sets the timeout for how long the logon in the ABAP backend can take when opening a connection.
+     * The default value is 60 seconds.
+     *
+     * The timeout can also be set via <code>RFC_GLOBAL_LOGON_TIMEOUT</code> in the <code>DEFAULT</code>
+     * section of the <em>sapnwrfc.ini</em> file.
+     *
+     * @param int $timeout Timeout in seconds (1 - 3600).
+     *
+     * @throws ConnectionException if timeout cannot be set or is out of range.
+     */
+    public static function setGlobalLogonTimeout(int $timeout): void
+    {
+        $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
+            ->get('\SAPNWRFC\Connection::' . __FUNCTION__);
+        $func($timeout);
+    }
+
+    /**
      * Get the extension version.
      *
      * @return string The extension version.
      */
     public static function version(): string
     {
-        return 'SAPNWRFC MOCKUP 1.0';
+        return 'SAPNWRFC MOCKUP 2.1.0';
     }
 
     /**
@@ -289,7 +344,8 @@ class Connection
 class RemoteFunction
 {
     /**
-     * RemoteFunction constructor.
+     * Manually inserted RemoteFunction constructor for ease of creation by
+     * \SAPNWRFC\Connection::getFunction()
      * @param string $name function name
      */
     public function __construct($name)
@@ -325,7 +381,7 @@ class RemoteFunction
      *
      * @throws FunctionCallException if the parameter status could not be set.
      */
-    public function setParameterActive(string $parameterName, bool $isActive)
+    public function setParameterActive(string $parameterName, bool $isActive): void
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
             ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
@@ -347,11 +403,25 @@ class RemoteFunction
     }
 
     /**
-     * Return the SAP remote function API description as array.
+     * Get the function's parameter description.
      *
-     * @return array
+     * @return array The parameter descriptions, indexed by parameter name.
+     *
+     * @throws FunctionCallException if the interface description cannot be retrieved.
      */
     public function getFunctionDescription(): array
+    {
+        $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
+            ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
+        return $func();
+    }
+
+    /**
+     * Get the function's name.
+     *
+     * @return string The function name.
+     */
+    public function getName(): string
     {
         $func = \phpsap\IntegrationTests\SapRfcModuleMocks::singleton()
             ->get('\SAPNWRFC\RemoteFunction::' . __FUNCTION__);
