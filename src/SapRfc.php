@@ -124,8 +124,7 @@ class SapRfc extends AbstractFunction
             } catch (IIncompleteConfigException $exception) {
                 throw new IncompleteConfigException(
                     $exception->getMessage(),
-                    $exception->getCode(),
-                    $exception
+                    $exception->getCode()
                 );
             }
             /**
@@ -134,9 +133,9 @@ class SapRfc extends AbstractFunction
             try {
                 if ($config->getTrace() !== null) {
                     /**
-                     * \SAPNWRFC\Connection::TRACE_LEVEL_* uses the same values as
-                     * \phpsap\interfaces\Config\IConfigCommon::TRACE_*. Therefore
-                     * no mapping is necessary.
+                     * \SAPNWRFC\Connection::TRACE_LEVEL_* uses the same values
+                     * as \phpsap\interfaces\Config\IConfigCommon::TRACE_*.
+                     * Therefore, no mapping is necessary.
                      */
                     Connection::setTraceLevel($config->getTrace());
                 }
@@ -162,13 +161,13 @@ class SapRfc extends AbstractFunction
         $api = new RemoteApi();
         foreach ($this->saprfcFunctionInterface() as $name => $element) {
             try {
-                $api->add($this->createApiValue(
+                $api->add($this->createApiElement(
                     strtoupper($name),
                     $this->mapType($element['type']),
                     $this->mapDirection($element['direction']),
                     $element
                 ));
-            } catch (SapLogicException $exception) {
+            } catch (IInvalidArgumentException | SapLogicException $exception) {
                 /**
                  * InvalidArgumentException is a child of SapLogicException and will
                  * be caught too.
@@ -213,7 +212,7 @@ class SapRfc extends AbstractFunction
          */
         $params = array_merge(
             $this->getInputParams(
-                $this->getApi()->getInputValues(),
+                $this->getApi()->getInputElements(),
                 $this->getParams()
             ),
             $this->getTableParams(
@@ -238,8 +237,8 @@ class SapRfc extends AbstractFunction
         /**
          * Typecast the return values.
          */
-        return $this->castOutputValues(array_merge(
-            $this->getApi()->getOutputValues(),
+        return $this->castOutput(array_merge(
+            $this->getApi()->getOutputElements(),
             $this->getApi()->getTables()
         ), $result);
     }
