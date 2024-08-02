@@ -11,6 +11,7 @@ use phpsap\exceptions\FunctionCallException;
 use phpsap\exceptions\IncompleteConfigException;
 use phpsap\exceptions\SapLogicException;
 use phpsap\exceptions\UnknownFunctionException;
+use phpsap\interfaces\Config\IConfiguration;
 use phpsap\interfaces\exceptions\IIncompleteConfigException;
 use phpsap\interfaces\exceptions\IInvalidArgumentException;
 use phpsap\saprfc\Traits\ApiTrait;
@@ -20,6 +21,7 @@ use SAPNWRFC\Connection;
 use SAPNWRFC\ConnectionException as ModuleConnectionException;
 use SAPNWRFC\FunctionCallException as ModuleFunctionCallException;
 use SAPNWRFC\RemoteFunction;
+use TypeError;
 
 use function array_merge;
 use function get_object_vars;
@@ -133,14 +135,19 @@ class SapRfc extends AbstractFunction
             try {
                 if ($config->getTrace() !== null) {
                     /**
-                     * \SAPNWRFC\Connection::TRACE_LEVEL_* uses the same values
-                     * as \phpsap\interfaces\Config\IConfigCommon::TRACE_*.
-                     * Therefore, no mapping is necessary.
+                     * SAPNWRFC introduced TRACE_DETAILED (3) in v2.1.0 which
+                     * is not available via the interface.
                      */
-                    Connection::setTraceLevel($config->getTrace());
+                    $trace = match ($config->getTrace()) {
+                        IConfiguration::TRACE_FULL => 4,
+                        IConfiguration::TRACE_VERBOSE => 2,
+                        IConfiguration::TRACE_BRIEF => 1,
+                        default => 0,
+                    };
+                    Connection::setTraceLevel($trace);
                 }
                 $this->connection = new Connection($moduleConfig);
-            } catch (ModuleConnectionException $exception) {
+            } catch (TypeError | ModuleConnectionException $exception) {
                 throw new ConnectionFailedException(sprintf(
                     'Connection creation failed: %s',
                     $exception->getMessage()
@@ -155,9 +162,6 @@ class SapRfc extends AbstractFunction
      */
     public function extractApi(): RemoteApi
     {
-        /**
-         * InvalidArgumentException is never thrown, because no parameter is given.
-         */
         $api = new RemoteApi();
         foreach ($this->saprfcFunctionInterface() as $name => $element) {
             try {
@@ -192,13 +196,7 @@ class SapRfc extends AbstractFunction
      */
     public function saprfcFunctionInterface(): array
     {
-        $function = $this->getFunction();
-        if (method_exists($function, 'getFunctionDescription')) {
-            return $function->getFunctionDescription();
-        }
-        $result = get_object_vars($function);
-        unset($result['name']);
-        return $result;
+        return $this->getFunction()->getFunctionDescription();
     }
 
     /**
@@ -227,7 +225,7 @@ class SapRfc extends AbstractFunction
             $result = $this
                 ->getFunction()
                 ->invoke($params, self::$invokeOptions);
-        } catch (ModuleFunctionCallException $exception) {
+        } catch (TypeError | ModuleFunctionCallException $exception) {
             throw new FunctionCallException(sprintf(
                 'Function call %s failed: %s',
                 $this->getName(),
