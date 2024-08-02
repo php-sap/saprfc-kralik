@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "490cfb015a307b70eee00902e9870c410e536383"
+                "reference": "b60fdd54a99b6c050a2a82265dc0cbd4b380b085"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/490cfb015a307b70eee00902e9870c410e536383",
-                "reference": "490cfb015a307b70eee00902e9870c410e536383",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/b60fdd54a99b6c050a2a82265dc0cbd4b380b085",
+                "reference": "b60fdd54a99b6c050a2a82265dc0cbd4b380b085",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "issues": "https://github.com/php-sap/common/issues",
                 "source": "https://github.com/php-sap/common/tree/main"
             },
-            "time": "2024-07-31T13:30:11+00:00"
+            "time": "2024-08-02T11:22:36+00:00"
         },
         {
             "name": "php-sap/datetime",
@@ -533,12 +533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "1c55028f7d3b76d321084c09a797a62c52e7c3d6"
+                "reference": "640bcd53302eba7b63ed1fd0886b54e8c390be87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/1c55028f7d3b76d321084c09a797a62c52e7c3d6",
-                "reference": "1c55028f7d3b76d321084c09a797a62c52e7c3d6",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/640bcd53302eba7b63ed1fd0886b54e8c390be87",
+                "reference": "640bcd53302eba7b63ed1fd0886b54e8c390be87",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
                 "issues": "https://github.com/php-sap/integration-tests/issues",
                 "source": "https://github.com/php-sap/integration-tests/tree/main"
             },
-            "time": "2024-07-31T16:13:06+00:00"
+            "time": "2024-08-02T07:35:43+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
