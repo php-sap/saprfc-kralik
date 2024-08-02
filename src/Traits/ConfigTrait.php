@@ -70,6 +70,7 @@ trait ConfigTrait
         if ($config->getLang() !== null) {
             $common['lang'] = $config->getLang();
         }
+        //mandatory configuration parameters
         $common['client'] = $config->getClient();
         $common['user'] = $config->getUser();
         $common['passwd'] = $config->getPasswd();
@@ -95,6 +96,7 @@ trait ConfigTrait
         if ($config->getGwserv() !== null) {
             $typeA['gwserv'] = $config->getGwserv();
         }
+        //mandatory configuration parameters
         $typeA['ashost'] = $config->getAshost();
         $typeA['sysnr']  = $config->getSysnr();
         return $typeA;
@@ -119,6 +121,7 @@ trait ConfigTrait
         if ($config->getGroup() !== null) {
             $typeB['group'] = $config->getGroup();
         }
+        //mandatory configuration parameter
         $typeB['mshost'] = $config->getMshost();
         return $typeB;
     }

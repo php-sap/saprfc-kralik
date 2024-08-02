@@ -786,7 +786,8 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
             }
             return new RemoteFunction($name);
         });
-        static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) use ($flags) {
+        static::mock('\SAPNWRFC\RemoteFunction::invoke', static function (array $params, array $options) {
+            unset($params, $options);
             throw new FunctionCallException('mock function call exception!');
         });
     }

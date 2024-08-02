@@ -178,7 +178,7 @@ class Connection
     /**
      * Lookup a RFC function and return a RemoteFunction object.
      *
-     * @param string $functionnName Name of the function.
+     * @param string $functionName Name of the function.
      * @param bool   $invalidateCache If true, invalidates the function desc cache.
      *
      * @return RemoteFunction A RemoteFunction class for the RFC function.
