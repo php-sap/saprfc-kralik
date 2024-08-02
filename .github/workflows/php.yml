@@ -43,7 +43,7 @@ jobs:
       - name: "lint PHP files"
         run: "php -l src/ tests/"
       - name: "install composer dependencies"
-        run: "composer install --prefer-dist --no-progress"
+        run: "composer install --prefer-dist --no-progress --ignore-platform-reqs"
       # PHPStan
       - name: "PHPStan static analysis"
         uses: "php-actions/phpstan@v3"
@@ -68,7 +68,7 @@ jobs:
       - name: "check PHP version"
         run: "php -v"
       - name: "install composer dependencies"
-        run: "composer install --prefer-dist --no-progress"
+        run: "composer install --prefer-dist --no-progress --ignore-platform-reqs"
       - name: "CodeClimate reporter setup"
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
