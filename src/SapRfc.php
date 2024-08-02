@@ -24,8 +24,6 @@ use SAPNWRFC\RemoteFunction;
 use TypeError;
 
 use function array_merge;
-use function get_object_vars;
-use function method_exists;
 use function sprintf;
 
 /**
