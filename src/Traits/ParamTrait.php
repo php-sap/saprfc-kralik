@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace phpsap\saprfc\Traits;
 
+use phpsap\classes\Api\Struct;
+use phpsap\classes\Api\Table;
+use phpsap\classes\Api\Value;
 use phpsap\exceptions\FunctionCallException;
 use phpsap\interfaces\Api\IApiElement;
 use phpsap\interfaces\exceptions\IInvalidArgumentException;
@@ -79,6 +82,7 @@ trait ParamTrait
     private function castOutput(array $outputs, array $result): array
     {
         $return = [];
+        /** @var Value|Table|Struct $output */
         foreach ($outputs as $output) {
             $key = $output->getName();
             if (array_key_exists($key, $result)) {

@@ -28,6 +28,9 @@ class OutputTableTest extends AbstractTestCase
 {
     use TestCaseTrait;
 
+    /**
+     * @var array
+     */
     public static array $apiRaw = [
         'ET_API_ANGEBOT_ADRESSE' => [
             'name' => 'ET_API_ANGEBOT_ADRESSE',
@@ -206,9 +209,9 @@ class OutputTableTest extends AbstractTestCase
         ]
     ];
     /**
-     * @var string
+     * @var array
      */
-    public static $apiJson = [
+    public static array $apiJson = [
         0 => [
             'type' => 'table',
             'name' => 'ET_API_ANGEBOT_ADRESSE',
@@ -343,7 +346,7 @@ class OutputTableTest extends AbstractTestCase
     /**
      * Mock the RFC_OUTPUT_TABLE function.
      */
-    public function mockRfcOutputTable()
+    public function mockRfcOutputTable(): void
     {
         //Use an object for connection flag and function name.
         $flags = new stdClass();
@@ -354,9 +357,9 @@ class OutputTableTest extends AbstractTestCase
         $flags->response = self::$responseRaw;
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
+            unset($options);
             if (
-                !is_array($config)
-                || !array_key_exists('ashost', $config)
+                !array_key_exists('ashost', $config)
                 || !array_key_exists('sysnr', $config)
                 || !array_key_exists('client', $config)
                 || !array_key_exists('user', $config)
@@ -373,7 +376,7 @@ class OutputTableTest extends AbstractTestCase
             $flags->conn = true;
         });
         static::mock('\SAPNWRFC\Connection::close', static function () use ($flags) {
-            //calling \SAPNWRFC\Connection::close twice has to fail
+            //calling \SAPNWRFC\Connection::close() twice has to fail
             if ($flags->conn !== true) {
                 throw new ConnectionException('mock connection already closed!');
             }
