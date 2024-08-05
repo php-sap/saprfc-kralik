@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "php-sap/common",
-            "version": "v6.0.0",
+            "version": "v6.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "85ea659659f9569246c778e082935ad813b1866f"
+                "reference": "5598d0f9831f07b33a2e92392300aa176540e3cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/85ea659659f9569246c778e082935ad813b1866f",
-                "reference": "85ea659659f9569246c778e082935ad813b1866f",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/5598d0f9831f07b33a2e92392300aa176540e3cf",
+                "reference": "5598d0f9831f07b33a2e92392300aa176540e3cf",
                 "shasum": ""
             },
             "require": {
@@ -56,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sap/common/issues",
-                "source": "https://github.com/php-sap/common/tree/v6.0.0"
+                "source": "https://github.com/php-sap/common/tree/v6.1.0"
             },
-            "time": "2024-08-05T11:02:59+00:00"
+            "time": "2024-08-05T12:09:10+00:00"
         },
         {
             "name": "php-sap/datetime",
@@ -117,16 +117,16 @@
         },
         {
             "name": "php-sap/interfaces",
-            "version": "v5.0.0",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/interfaces.git",
-                "reference": "d4ae1038eb26251f5e32eb6429cdf4f40d2ab422"
+                "reference": "0c9d523009946ba223f0fd72e0a403130f3cc664"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/interfaces/zipball/d4ae1038eb26251f5e32eb6429cdf4f40d2ab422",
-                "reference": "d4ae1038eb26251f5e32eb6429cdf4f40d2ab422",
+                "url": "https://api.github.com/repos/php-sap/interfaces/zipball/0c9d523009946ba223f0fd72e0a403130f3cc664",
+                "reference": "0c9d523009946ba223f0fd72e0a403130f3cc664",
                 "shasum": ""
             },
             "require": {
@@ -165,9 +165,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sap/interfaces/issues",
-                "source": "https://github.com/php-sap/interfaces/tree/v5.0.0"
+                "source": "https://github.com/php-sap/interfaces/tree/v5.1.0"
             },
-            "time": "2024-07-30T12:11:01+00:00"
+            "time": "2024-08-05T11:54:30+00:00"
         }
     ],
     "packages-dev": [
