@@ -208,7 +208,10 @@ class SapRfc extends AbstractFunction
          */
         $params = array_merge(
             $this->getInputParams(
-                $this->getApi()->getInputElements(),
+                array_merge(
+                    $this->getApi()->getInputElements(),
+                    $this->getApi()->getChangingElements()
+                ),
                 $this->getParams()
             ),
             $this->getTableParams(
@@ -235,6 +238,7 @@ class SapRfc extends AbstractFunction
          */
         return $this->castOutput(array_merge(
             $this->getApi()->getOutputElements(),
+            $this->getApi()->getChangingElements(),
             $this->getApi()->getTables()
         ), $result);
     }

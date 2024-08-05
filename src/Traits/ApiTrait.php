@@ -107,9 +107,10 @@ trait ApiTrait
     private function mapDirection(string $direction): string
     {
         $mapping = [
-            'RFC_EXPORT' => IApiElement::DIRECTION_OUTPUT,
-            'RFC_IMPORT' => IApiElement::DIRECTION_INPUT,
-            'RFC_TABLES' => ITable::DIRECTION_TABLE
+            'RFC_EXPORT'   => IApiElement::DIRECTION_OUTPUT,
+            'RFC_IMPORT'   => IApiElement::DIRECTION_INPUT,
+            'RFC_CHANGING' => IApiElement::DIRECTION_CHANGING,
+            'RFC_TABLES'   => ITable::DIRECTION_TABLE
         ];
         if (!array_key_exists($direction, $mapping)) {
             throw new SapLogicException(sprintf('Unknown SAP Netweaver RFC direction \'%s\'!', $direction));
