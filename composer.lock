@@ -4,33 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d63653d3be012e20a7eb280691e07dca",
+    "content-hash": "8a148f7f5d9c23afb9bc5766699702bb",
     "packages": [
         {
             "name": "php-sap/common",
-            "version": "dev-main",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/common.git",
-                "reference": "b60fdd54a99b6c050a2a82265dc0cbd4b380b085"
+                "reference": "85ea659659f9569246c778e082935ad813b1866f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/common/zipball/b60fdd54a99b6c050a2a82265dc0cbd4b380b085",
-                "reference": "b60fdd54a99b6c050a2a82265dc0cbd4b380b085",
+                "url": "https://api.github.com/repos/php-sap/common/zipball/85ea659659f9569246c778e082935ad813b1866f",
+                "reference": "85ea659659f9569246c778e082935ad813b1866f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^8.1",
                 "php-sap/datetime": "^1.5",
-                "php-sap/interfaces": "dev-main"
+                "php-sap/interfaces": "^5.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
                 "squizlabs/php_codesniffer": "^3.7"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -57,9 +56,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sap/common/issues",
-                "source": "https://github.com/php-sap/common/tree/main"
+                "source": "https://github.com/php-sap/common/tree/v6.0.0"
             },
-            "time": "2024-08-02T11:22:36+00:00"
+            "time": "2024-08-05T11:02:59+00:00"
         },
         {
             "name": "php-sap/datetime",
@@ -118,7 +117,7 @@
         },
         {
             "name": "php-sap/interfaces",
-            "version": "dev-main",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/interfaces.git",
@@ -140,7 +139,6 @@
             "require-dev": {
                 "squizlabs/php_codesniffer": "^3.7"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -167,7 +165,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sap/interfaces/issues",
-                "source": "https://github.com/php-sap/interfaces/tree/main"
+                "source": "https://github.com/php-sap/interfaces/tree/v5.0.0"
             },
             "time": "2024-07-30T12:11:01+00:00"
         }
@@ -529,30 +527,29 @@
         },
         {
             "name": "php-sap/integration-tests",
-            "version": "dev-main",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sap/integration-tests.git",
-                "reference": "640bcd53302eba7b63ed1fd0886b54e8c390be87"
+                "reference": "76f374b23595f43c1855d8e523153c6e15c7f105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/640bcd53302eba7b63ed1fd0886b54e8c390be87",
-                "reference": "640bcd53302eba7b63ed1fd0886b54e8c390be87",
+                "url": "https://api.github.com/repos/php-sap/integration-tests/zipball/76f374b23595f43c1855d8e523153c6e15c7f105",
+                "reference": "76f374b23595f43c1855d8e523153c6e15c7f105",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "kba-team/memory-container": "^2.0",
                 "php": "^8.1",
-                "php-sap/common": "dev-main",
-                "php-sap/interfaces": "dev-main",
+                "php-sap/common": "^6.0",
+                "php-sap/interfaces": "^5.0",
                 "phpunit/phpunit": "^9.6"
             },
             "require-dev": {
                 "squizlabs/php_codesniffer": "^3.7"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -574,9 +571,9 @@
             "homepage": "https://php-sap.github.io/",
             "support": {
                 "issues": "https://github.com/php-sap/integration-tests/issues",
-                "source": "https://github.com/php-sap/integration-tests/tree/main"
+                "source": "https://github.com/php-sap/integration-tests/tree/v7.0.0"
             },
-            "time": "2024-08-02T07:35:43+00:00"
+            "time": "2024-08-05T11:28:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2144,11 +2141,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-sap/interfaces": 20,
-        "php-sap/common": 20,
-        "php-sap/integration-tests": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
