@@ -29,7 +29,7 @@ use phpsap\saprfc\SapRfc;
  *
  * In this case the configuration array is defined manually.
  */
-$result = (new SapRfc(
+$result = SapRfc::create(
   'MY_COOL_SAP_REMOTE_FUNCTION',
   [
       'IV_DATE' => (new DateTime('2019-12-31'))
@@ -41,8 +41,8 @@ $result = (new SapRfc(
       ConfigTypeA::JSON_CLIENT => '001',
       ConfigTypeA::JSON_USER   => 'username',
       ConfigTypeA::JSON_PASSWD => 'password'
-  ])
-))->invoke();
+  ])  
+)->invoke();
 //The output array contains a DateTime object.
 echo $result['OV_DATE']->format('Y-m-d') . PHP_EOL;
 ```
