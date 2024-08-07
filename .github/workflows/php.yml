@@ -78,3 +78,14 @@ jobs:
         run: |
           php vendor/bin/phpunit --coverage-clover clover.xml --coverage-text
           ./cc-test-reporter after-build -t clover --exit-code $?
+  codesniffer:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "git checkout"
+        uses: "actions/checkout@v3"
+      - name: "Install PHP_CodeSniffer"
+        run: "curl -OLf https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar"
+      - name: "check PHP_CodeSniffer version"
+        run: "php phpcs.phar --version"
+      - name: "PHP CodeSniffer"
+        run: "php phpcs.phar"
