@@ -49,11 +49,5 @@
     "psr-4": {
       "tests\\phpsap\\saprfc\\": "tests/"
     }
-  },
-  "scripts": {
-    "tests": "vendor/bin/phpunit"
-  },
-  "scripts-descriptions": {
-    "tests": "Run all unit tests."
   }
 }
