@@ -32,8 +32,8 @@
   "require": {
     "php": "^8.1",
     "ext-sapnwrfc": "^2.1",
-    "php-sap/interfaces": "^5.0",
-    "php-sap/common": "^6.0"
+    "php-sap/interfaces": "^5.1",
+    "php-sap/common": "^6.1"
   },
   "require-dev": {
     "ext-json": "*",
