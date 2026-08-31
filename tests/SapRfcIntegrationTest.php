@@ -513,7 +513,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @inheritDoc
      */
-    protected function mockConnectionFailed()
+    protected function mockConnectionFailed(): void
     {
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) {
             throw new ConnectionException('mock failed connection');
@@ -523,7 +523,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @inheritDoc
      */
-    protected function mockSuccessfulRfcPing()
+    protected function mockSuccessfulRfcPing(): void
     {
         $flags = new stdClass();
         $flags->conn = false;
@@ -591,7 +591,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @inheritDoc
      */
-    protected function mockUnknownFunctionException()
+    protected function mockUnknownFunctionException(): void
     {
         $flags = new stdClass();
         $flags->conn = false;
@@ -631,7 +631,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @inheritDoc
      */
-    protected function mockRemoteFunctionCallWithParametersAndResults()
+    protected function mockRemoteFunctionCallWithParametersAndResults(): void
     {
         //Use an object for connection flag and function name.
         $flags = new stdClass();
@@ -727,7 +727,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
     /**
      * @inheritDoc
      */
-    protected function mockFailedRemoteFunctionCallWithParameters()
+    protected function mockFailedRemoteFunctionCallWithParameters(): void
     {
         //Use an object for connection flag and function name.
         $flags = new stdClass();
