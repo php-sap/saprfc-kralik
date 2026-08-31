@@ -6,5 +6,11 @@ parameters:
   scanDirectories:
     - vendor/
   ignoreErrors:
-    - '/Unreachable statement \- code above always terminates\./'
     - '/PHPDoc tag @var above a method has no effect\./'
+    -
+      # The mocked module stub used for static analysis never declares a
+      # TypeError, but the real sapnwrfc extension can throw it for
+      # malformed invoke() parameters, so this catch is intentional.
+      message: '/Dead catch - TypeError is never thrown in the try block\./'
+      path: src/SapRfc.php
+      count: 1
