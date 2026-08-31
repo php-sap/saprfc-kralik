@@ -531,8 +531,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
             if (
-                !is_array($config)
-                || !array_key_exists('ashost', $config)
+                !array_key_exists('ashost', $config)
                 || !array_key_exists('sysnr', $config)
                 || !array_key_exists('client', $config)
                 || !array_key_exists('user', $config)
@@ -598,8 +597,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
             if (
-                !is_array($config)
-                || !array_key_exists('ashost', $config)
+                !array_key_exists('ashost', $config)
                 || !array_key_exists('sysnr', $config)
                 || !array_key_exists('client', $config)
                 || !array_key_exists('user', $config)
@@ -641,8 +639,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
             if (
-                !is_array($config)
-                || !array_key_exists('ashost', $config)
+                !array_key_exists('ashost', $config)
                 || !array_key_exists('sysnr', $config)
                 || !array_key_exists('client', $config)
                 || !array_key_exists('user', $config)
@@ -737,8 +734,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
         $expectedConfig = static::getSampleSapConfig();
         static::mock('\SAPNWRFC\Connection::__construct', static function (array $config, array $options) use ($flags, $expectedConfig) {
             if (
-                !is_array($config)
-                || !array_key_exists('ashost', $config)
+                !array_key_exists('ashost', $config)
                 || !array_key_exists('sysnr', $config)
                 || !array_key_exists('client', $config)
                 || !array_key_exists('user', $config)
