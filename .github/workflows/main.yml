@@ -1,0 +1,73 @@
+name: "CI"
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: "read"
+
+concurrency:
+  group: "ci-${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  composer:
+    name: "composer config validation"
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 10
+    steps:
+      - name: "git checkout"
+        uses: "actions/checkout@v7"
+        with:
+          persist-credentials: false
+      - name: "Validate composer.json"
+        run: "composer validate --strict"
+
+  php:
+    name: "PHP ${{ matrix.php-version }} (${{ matrix.dependencies }})"
+    needs: "composer"
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - "8.1"
+          - "8.2"
+          - "8.3"
+        dependencies:
+          - "locked"
+        include:
+          - php-version: "8.1"
+            dependencies: "lowest"
+    steps:
+      - name: "git checkout"
+        uses: "actions/checkout@v7"
+        with:
+          persist-credentials: false
+      - name: "setup PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          extensions: "json"
+          coverage: "xdebug"
+          tools: "composer:v2"
+      - name: "install composer dependencies (locked)"
+        if: "matrix.dependencies == 'locked'"
+        run: "composer install --prefer-dist --no-interaction --no-progress --ignore-platform-req=ext-sapnwrfc"
+      - name: "install composer dependencies (lowest)"
+        if: "matrix.dependencies == 'lowest'"
+        run: "composer update --prefer-lowest --prefer-dist --no-interaction --no-progress --ignore-platform-req=ext-sapnwrfc"
+      - name: "audit dependencies for known security vulnerabilities"
+        if: "matrix.php-version == '8.1'"
+        run: "composer audit"
+      - name: "lint PHP files"
+        run: "find src tests -type f -name '*.php' -print0 | xargs -0 -n1 php -l"
+      - name: "run PHPUnit"
+        run: "php vendor/bin/phpunit --coverage-text --colors=never"
+      - name: "run PHPStan"
+        run: "php vendor/bin/phpstan analyse --no-progress"
+      - name: "run PHPCS"
+        run: "php vendor/bin/phpcs"
