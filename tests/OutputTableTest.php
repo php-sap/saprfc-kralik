@@ -23,6 +23,8 @@ use tests\phpsap\saprfc\Traits\TestCaseTrait;
  * All strings and numbers in this example have been generated at random.org.
  *
  * @package tests\phpsap\saprfc
+ *
+ * @phpstan-import-type ApiElementDef from \phpsap\saprfc\Traits\ApiTrait
  */
 class OutputTableTest extends AbstractTestCase
 {
@@ -30,6 +32,7 @@ class OutputTableTest extends AbstractTestCase
 
     /**
      * @var array
+     * @phpstan-var array<string, ApiElementDef>
      */
     public static array $apiRaw = [
         'ET_API_ANGEBOT_ADRESSE' => [
@@ -210,6 +213,7 @@ class OutputTableTest extends AbstractTestCase
     ];
     /**
      * @var array
+     * @phpstan-var array<int, array<string, mixed>>
      */
     public static array $apiJson = [
         0 => [
@@ -297,6 +301,7 @@ class OutputTableTest extends AbstractTestCase
     /**
      * Mocked function call response array.
      * @var array
+     * @phpstan-var array<string, array<int, array<string, string>>>
      */
     public static array $responseRaw = [
         'ET_API_ANGEBOT_ADRESSE' => [
@@ -426,7 +431,7 @@ class OutputTableTest extends AbstractTestCase
      * @throws IUnknownFunctionException
      * @throws IInvalidArgumentException
      */
-    public function testRfcOutputTable()
+    public function testRfcOutputTable(): void
     {
         //Mock the behavior of the module
         $this->mockRfcOutputTable();
@@ -437,20 +442,23 @@ class OutputTableTest extends AbstractTestCase
         $api = $saprfc->getApi();
         //Assert that the API meets the configured expectations.
         static::assertInstanceOf(RemoteApi::class, $api);
-        static::assertJsonStringEqualsJsonString(
-            json_encode(self::$apiJson),
-            json_encode($api)
-        );
+        $expectedJson = json_encode(self::$apiJson);
+        $actualJson = json_encode($api);
+        assert(is_string($expectedJson));
+        assert(is_string($actualJson));
+        static::assertJsonStringEqualsJsonString($expectedJson, $actualJson);
         //remote function call
         $response = $saprfc->invoke();
         static::assertCount(1, $response);
         static::assertArrayHasKey('ET_API_ANGEBOT_ADRESSE', $response);
-        static::assertCount(2, $response['ET_API_ANGEBOT_ADRESSE']);
-        static::assertArrayHasKey(0, $response['ET_API_ANGEBOT_ADRESSE']);
-        static::assertArrayHasKey(1, $response['ET_API_ANGEBOT_ADRESSE']);
-        static::assertArrayHasKey('KUNNR', $response['ET_API_ANGEBOT_ADRESSE'][0]);
-        static::assertArrayHasKey('KUNNR', $response['ET_API_ANGEBOT_ADRESSE'][1]);
-        static::assertSame('efhNQr886li8Zn5RhfMp', $response['ET_API_ANGEBOT_ADRESSE'][0]['KUNNR']);
-        static::assertSame('GP6gqa1vxYOog7JaB9Hu', $response['ET_API_ANGEBOT_ADRESSE'][1]['KUNNR']);
+        /** @var array<int, array<string, string>> $addresses */
+        $addresses = $response['ET_API_ANGEBOT_ADRESSE'];
+        static::assertCount(2, $addresses);
+        static::assertArrayHasKey(0, $addresses);
+        static::assertArrayHasKey(1, $addresses);
+        static::assertArrayHasKey('KUNNR', $addresses[0]);
+        static::assertArrayHasKey('KUNNR', $addresses[1]);
+        static::assertSame('efhNQr886li8Zn5RhfMp', $addresses[0]['KUNNR']);
+        static::assertSame('GP6gqa1vxYOog7JaB9Hu', $addresses[1]['KUNNR']);
     }
 }

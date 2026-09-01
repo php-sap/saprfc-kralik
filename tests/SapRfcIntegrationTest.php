@@ -20,6 +20,8 @@ use tests\phpsap\saprfc\Traits\TestCaseTrait;
  * @package tests\phpsap\saprfc
  * @author Gregor J.
  * @license MIT
+ *
+ * @phpstan-import-type ApiElementDef from \phpsap\saprfc\Traits\ApiTrait
  */
 class SapRfcIntegrationTest extends AbstractSapRfcTestCase
 {
@@ -27,6 +29,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
 
     /**
      * @var array The raw API of the RFC walk through test as seen by the module.
+     * @phpstan-var array<string, ApiElementDef>
      */
     public static array $rfcWalkThruTestApi = [
         'TEST_OUT' => [
@@ -337,6 +340,7 @@ class SapRfcIntegrationTest extends AbstractSapRfcTestCase
 
     /**
      * @var array raw API of RFC read table
+     * @phpstan-var array<string, ApiElementDef>
      */
     public static array $rfcReadTableApi = [
         'DELIMITER' => [

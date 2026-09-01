@@ -25,6 +25,7 @@ trait ConfigTrait
      * Get the module specific connection configuration.
      * @param IConfiguration $config
      * @return array
+     * @phpstan-return array<string, string>
      * @throws IIncompleteConfigException
      */
     protected function getModuleConfig(IConfiguration $config): array
@@ -41,6 +42,7 @@ trait ConfigTrait
      * expect any other types here.
      * @param IConfiguration $config
      * @return array
+     * @phpstan-return array<string, string>
      * @throws IIncompleteConfigException
      */
     private function getSpecificConfig(IConfiguration $config): array
@@ -62,6 +64,7 @@ trait ConfigTrait
      *
      * @param IConfiguration $config
      * @return array
+     * @phpstan-return array<string, string>
      * @throws IIncompleteConfigException
      */
     private function getCommonConfig(IConfiguration $config): array
@@ -85,6 +88,7 @@ trait ConfigTrait
      *
      * @param IConfigTypeA $config
      * @return array
+     * @phpstan-return array<string, string>
      * @throws IIncompleteConfigException
      */
     private function getTypeAConfig(IConfigTypeA $config): array
@@ -110,6 +114,7 @@ trait ConfigTrait
      *
      * @param IConfigTypeB $config
      * @return array
+     * @phpstan-return array<string, string>
      * @throws IIncompleteConfigException
      */
     private function getTypeBConfig(IConfigTypeB $config): array

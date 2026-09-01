@@ -21,6 +21,9 @@ use function sprintf;
  * @package phpsap\saprfc
  * @author  Gregor J.
  * @license MIT
+ *
+ * @phpstan-type RawScalar bool|float|int|string|null
+ * @phpstan-type RawOutputValue RawScalar|array<string, RawScalar>|array<int, array<string, RawScalar>>
  */
 trait ParamTrait
 {
@@ -29,7 +32,9 @@ trait ParamTrait
      * and the previously set parameters.
      * @param IApiElement[] $inputs API input values.
      * @param array                           $params Parameters
+     * @phpstan-param array<string, mixed> $params
      * @return array
+     * @phpstan-return array<string, mixed>
      * @throws FunctionCallException
      */
     private function getInputParams(array $inputs, array $params): array
@@ -55,7 +60,9 @@ trait ParamTrait
      * previously set parameters.
      * @param IApiElement[] $tables
      * @param array                           $params
+     * @phpstan-param array<string, mixed> $params
      * @return array
+     * @phpstan-return array<string, mixed>
      */
     private function getTableParams(array $tables, array $params): array
     {
@@ -76,7 +83,9 @@ trait ParamTrait
     /**
      * @param IApiElement[] $outputs
      * @param array                           $result
+     * @phpstan-param array<string, RawOutputValue> $result
      * @return array
+     * @phpstan-return array<string, mixed>
      * @throws IInvalidArgumentException
      */
     private function castOutput(array $outputs, array $result): array

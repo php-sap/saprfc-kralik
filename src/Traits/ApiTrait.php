@@ -24,6 +24,28 @@ use function sprintf;
  * @package phpsap\saprfc
  * @author  Gregor J.
  * @license MIT
+ *
+ * @phpstan-type ApiElementTypedef array{
+ *     name: string,
+ *     type: string,
+ *     ucLength: int,
+ *     ucOffset: int,
+ *     nucLength: int,
+ *     nucOffset: int,
+ *     decimals: int
+ * }
+ * @phpstan-type ApiElementDef array{
+ *     name: string,
+ *     type: string,
+ *     direction: string,
+ *     description: string,
+ *     ucLength: int,
+ *     nucLength: int,
+ *     decimals: int,
+ *     optional: bool,
+ *     default: string,
+ *     typedef?: array<string, ApiElementTypedef>
+ * }
  */
 trait ApiTrait
 {
@@ -35,6 +57,7 @@ trait ApiTrait
      * @param string $direction The direction indicating whether it's a parameter or
      *                          return value.
      * @param array $def The complete API value defintion from the module.
+     * @phpstan-param ApiElementDef $def
      * @return Value|Struct|Table
      * @throws IInvalidArgumentException
      */
@@ -53,12 +76,20 @@ trait ApiTrait
     /**
      * Create either struct or table members from the def array of the remote function API.
      * @param array $def The complete API value defintion.
+     * @phpstan-param ApiElementDef $def
      * @return Member[] An array of Member objects.
      * @throws SapLogicException In case a datatype is missing in the mappings array.
      */
     private function createMembers(array $def): array
     {
         $result = [];
+        /**
+         * The ApiElementDef PHPDoc type only describes the structure the SAP
+         * module is expected to return; it is not a runtime guarantee. Keep
+         * this defensive is_array() check in case a real SAP system ever
+         * returns a malformed 'typedef' entry.
+         */
+        // @phpstan-ignore function.alreadyNarrowedType
         if (array_key_exists('typedef', $def) && is_array($def['typedef'])) {
             foreach ($def['typedef'] as $name => $member) {
                 $result[] = Member::create($this->mapType($member['type']), $name);
