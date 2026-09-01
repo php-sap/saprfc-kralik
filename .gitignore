@@ -2,4 +2,3 @@ vendor/
 /.phpunit.result.cache
 .uuid
 /composer.lock
-/.env
