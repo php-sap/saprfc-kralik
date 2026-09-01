@@ -47,6 +47,18 @@ echo $result['OV_DATE']->format('Y-m-d') . PHP_EOL;
 
 For further documentation, please read the documentation on [PHP/SAP][phpsap]!
 
+## Development
+
+All development commands (install, test, lint, analyze, beautify, sniff, audit,
+validate) run via Docker through the `Makefile`, so no local PHP installation is
+needed. Run `make help` to list all targets. Most targets require `PHP_VERSION`,
+e.g.:
+
+```sh
+make install PHP_VERSION=8.1
+```
+
+
 [phpsap]: https://php-sap.github.io
 [kralik]: https://github.com/gkralik/php7-sapnwrfc "SAP NW RFC SDK extension for PHP7"
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
