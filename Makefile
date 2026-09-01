@@ -85,11 +85,11 @@ sniff: check-php-version ## Run PHPCS (code style check) for PHP_VERSION
 		"php:$(PHP_VERSION)-cli" php vendor/bin/phpcs
 
 audit: ## Run composer audit (checks dependencies for known vulnerabilities; CA_CERT_FILE for a corporate proxy CA)
-	docker run --rm --init $(DOCKER_USER) \
+	docker run --rm -t --init $(DOCKER_USER) \
 		--env HTTP_PROXY --env HTTPS_PROXY --env NO_PROXY \
 		$(CA_MOUNT) $(DOCKER_MOUNT) \
 		$(COMPOSER_IMAGE) sh -c '$(CA_TRUST_CMD) composer audit'
 
 validate: ## Run composer validate --strict
-	docker run --rm --init $(DOCKER_USER) $(DOCKER_MOUNT) \
+	docker run --rm -t $(DOCKER_USER) $(DOCKER_MOUNT) \
 		$(COMPOSER_IMAGE) composer validate --strict
