@@ -39,7 +39,7 @@
     "ext-json": "*",
     "phpunit/phpunit": "^9.6.33",
     "php-sap/integration-tests": "^8.0.0",
-    "phpstan/phpstan": "^2.2",
+    "phpstan/phpstan": "^2.2.3",
     "squizlabs/php_codesniffer": "^4.0"
   },
   "autoload": {
