@@ -1,5 +1,5 @@
 parameters:
-  level: 5
+  level: 9
   paths:
     - src/
     - tests/
@@ -14,3 +14,10 @@ parameters:
       message: '/Dead catch - TypeError is never thrown in the try block\./'
       path: src/SapRfc.php
       count: 1
+    -
+      # tests/helper/SAPNWRFC.php is a verbatim copy of the real extension's
+      # stub file (see its header comment) and must not diverge from it with
+      # generic array type annotations, so its missing iterable value types
+      # are intentionally left unaddressed.
+      message: '/value type specified in iterable type array\./'
+      path: tests/helper/SAPNWRFC.php

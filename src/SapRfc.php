@@ -31,6 +31,9 @@ use function sprintf;
  * @package phpsap\saprfc
  * @author  Gregor J.
  * @license MIT
+ *
+ * @phpstan-import-type ApiElementDef from ApiTrait
+ * @phpstan-import-type RawOutputValue from ParamTrait
  */
 class SapRfc extends AbstractFunction
 {
@@ -50,6 +53,7 @@ class SapRfc extends AbstractFunction
 
     /**
      * @var array Which options to use for invoke() method of the module.
+     * @phpstan-var array<string, mixed>
      */
     private static array $invokeOptions = [
         'rtrim' => true
@@ -188,6 +192,7 @@ class SapRfc extends AbstractFunction
      * Extract the remote function API from the function object and remove
      * unwanted variables.
      * @return array
+     * @phpstan-return array<string, ApiElementDef>
      * @throws ConnectionFailedException
      * @throws IncompleteConfigException
      * @throws UnknownFunctionException
@@ -236,6 +241,7 @@ class SapRfc extends AbstractFunction
         /**
          * Typecast the return values.
          */
+        /** @phpstan-var array<string, RawOutputValue> $result */
         return $this->castOutput(array_merge(
             $this->getApi()->getOutputElements(),
             $this->getApi()->getChangingElements(),

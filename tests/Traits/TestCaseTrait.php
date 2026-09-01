@@ -56,6 +56,7 @@ trait TestCaseTrait
     /**
      * Get an array of valid SAP RFC module function or class method names.
      * @return array
+     * @phpstan-return array<int, string>
      */
     public static function getValidModuleFunctions(): array
     {
